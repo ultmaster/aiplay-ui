@@ -1,7 +1,8 @@
-# aiplay-ui
+# AIPlayground Frontend
 
-```
-npm install
-npm start
-```
-###localhost:7777
+##Installation
+
+China: `npm install --registry=https://registry.npm.taobao.org`
+
+Others: `npm install`
+
