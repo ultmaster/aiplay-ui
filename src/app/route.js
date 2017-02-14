@@ -1,14 +1,4 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import Main from './Main'; // Our custom react component
-
-
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
-
+import { Router, Route, Link } from 'react-router'
 
 const App = React.createClass({
     render() {
@@ -48,26 +38,13 @@ const Message = React.createClass({
     }
 });
 
-const NotFound = React.createClass({
-    render() {
-        return (
-            <div>
-                404
-                NotFound
-            </div>
-        )
-    }
-});
-
-render((
-    <Router history={browserHistory}>
+React.render((
+    <Router>
         <Route path="/" component={App}>
             <Route path="about" component={About} />
             <Route path="inbox" component={Inbox}>
                 <Route path="messages/:id" component={Message} />
             </Route>
-            <Route path="notok" component={Main} />
         </Route>
-        <Route path="*" component={NotFound} />
     </Router>
-), document.getElementById('app'));
+), document.body);
