@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Main from './Main'; // Our custom react component
+require('./css/main.scss');
 
 
 // Needed for onTouchTap
@@ -61,7 +62,7 @@ const NotFound = React.createClass({
 
 render((
     <Router history={browserHistory}>
-        <Route path="/" component={App}>
+        <Route path="/" component={Main}>
             <Route path="about" component={About} />
             <Route path="inbox" component={Inbox}>
                 <Route path="messages/:id" component={Message} />

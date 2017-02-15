@@ -15,7 +15,7 @@ const config = {
   devServer: {
     contentBase: 'src/www', // Relative directory for base of server
     devtool: 'eval',
-    hot: true, // Live-reload
+    // hot: true, // Live-reload
     inline: true,
     port: 3000, // Port Number
     host: 'localhost', // Change to '0.0.0.0' for external facing server
@@ -33,6 +33,7 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     // Allows error warnings but does not stop compiling.
     new webpack.NoErrorsPlugin(),
+    // new webpack.ExtractTextPlugin(),
     // Moves files
     new TransferWebpackPlugin([
       {from: 'www'},
@@ -45,6 +46,16 @@ const config = {
         loaders: ['babel-loader'],
         exclude: [nodeModulesPath],
       },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: [nodeModulesPath],
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        loaders: ['url-loader?limit=10000&name=./fonts/[name].[ext]'],
+        exclude: [nodeModulesPath]
+      }
     ],
   },
 };

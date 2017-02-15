@@ -27,7 +27,8 @@ const config = {
       },
     }),
     // Allows error warnings but does not stop compiling.
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    // new webpack.ExtractTextPlugin(),
     // Transfer Files
     new TransferWebpackPlugin([
       {from: 'www'},
@@ -40,6 +41,16 @@ const config = {
         loaders: ['babel-loader'], // react-hot is like browser sync and babel loads jsx and es6-7
         exclude: [nodeModulesPath],
       },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: [nodeModulesPath],
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        loaders: ['url-loader?limit=10000&name=./fonts/[name].[ext]'],
+        exclude: [nodeModulesPath]
+      }
     ],
   },
 };
