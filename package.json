@@ -7,8 +7,8 @@
     "url": "https://github.com/ultmaster/aiplay-ui"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
-    "build": "webpack --config webpack-production.config.js --progress --colors"
+    "start": "webpack-dev-server --config webpack/dev.js --progress --inline --colors",
+    "build": "webpack --config webpack/production.js --progress --colors"
   },
   "private": true,
   "devDependencies": {

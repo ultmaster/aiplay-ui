@@ -28,6 +28,7 @@ const App = React.createClass({
 
 const About = React.createClass({
     render() {
+      console.log('about');
         return <h3>About</h3>
     }
 });
