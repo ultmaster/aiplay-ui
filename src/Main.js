@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import NavBar from './components/NavBar';
+import {Breakpoint} from 'react-responsive-grid';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
@@ -30,6 +30,7 @@ const styles = {
   appBar: {
     flatButton: {
       color: appBarTheme.textColor,
+      verticalAlign: 'top',
       marginTop: (muiTheme.button.iconButtonSize - 36) / 2 + 1
     },
     title: {
@@ -46,9 +47,10 @@ const styles = {
       lineHeight: appBarTheme.height + 'px',
     },
     iconButtonStyle: {
-      marginTop: (appBarTheme.height - muiTheme.button.iconButtonSize) / 2,
       marginRight: 8,
-      marginLeft: -16
+      marginLeft: 0,
+      padding: 0,
+      verticalAlign: 'center'
     },
     iconButtonIconStyle: {
       fill: appBarTheme.textColor,
@@ -60,13 +62,13 @@ const styles = {
   },
   logo: {
     cursor: "pointer",
-    fontSize: "24px",
+    fontSize: 20,
     fontWeight: 300,
     lineHeight: "64px",
-    paddingLeft: "24px",
-    marginBottom: "8px",
-    height: "64px",
-    backgroundColor: muiTheme.palette.primary1Color,
+    paddingLeft: 18,
+    marginBottom: 8,
+    height: 64,
+    backgroundColor: palette.primary1Color,
     color: "white",
   }
 };
@@ -98,6 +100,8 @@ class Main extends Component {
 
   render() {
 
+    const handleUserButton = this.props.handleUserButton;
+
     return (
 
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -111,11 +115,23 @@ class Main extends Component {
             }
             onLeftIconButtonTouchTap={this.handleOpenDrawer}
             iconElementRight={
-              <div style={{display:this.state.tablet?'none':'block',marginRight:8}}>
-                <FlatButton style={styles.appBar.flatButton} href="/#/problem/" label="Problems"/>
-                <FlatButton style={styles.appBar.flatButton} href="/#/competition/" label="Competitions"/>
-                <FlatButton style={styles.appBar.flatButton} href="/#/account/" label="Account"/>
-              </div>
+              <Breakpoint
+                minWidth={960}
+                widthMethod="pageWidth"
+              >
+                <div style={{marginRight:8}}>
+
+                  <FlatButton style={styles.appBar.flatButton} label="Problems" href="/problem"/>
+                  <FlatButton style={styles.appBar.flatButton} label="Competitions" href="/competition"/>
+                  <IconButton style={styles.appBar.iconButtonStyle}
+                              iconStyle={styles.appBar.iconButtonIconStyle}
+                              onTouchTap={this.handleUserButton}>
+                    <Person style={styles.appBar.iconButtonIconStyle}/>
+                  </IconButton>
+
+                </div>
+              </Breakpoint>
+
             }
             />
           <Drawer
@@ -129,7 +145,8 @@ class Main extends Component {
               <MenuItem onTouchTap={this.handleCloseDrawer} href="problem">Problems</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/competition">Competition</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/board">Board</MenuItem>
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="/user">Sign In / Sign Up</MenuItem>
+              <MenuItem onTouchTap={this.handleCloseDrawer} href="/account">Sign In</MenuItem>
+              <MenuItem onTouchTap={this.handleCloseDrawer} href="/account">Sign Up</MenuItem>
             </Menu>
           </Drawer>
           <div>
