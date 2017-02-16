@@ -1,9 +1,11 @@
 import React from 'react';
+var $ = require('jquery');
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import muiTheme from '../utils/theme';
+import Settings from '../settings';
 
 const customContentStyle = {
   maxWidth: 400
@@ -27,18 +29,26 @@ class Sign extends React.Component {
   select = (index) => this.setState({selectedIndex: index});
 
   signSubmit = (event) => {
-    let keys = [];
-    if (this.state.selectedIndex == 0)
+    let keys = [], source = '';
+    if (this.state.selectedIndex == 0) {
       keys = ['username', 'password'];
-    else
+      source = Settings.source + '/login';
+    } else {
       keys = ['email', 'username', 'password'];
+      source = Settings.source + '/register';
+    }
     let data = {};
     for (const key of keys) {
       data[key] = this.refs[key].getValue();
     }
     console.log(data);
     // SEND
-    // this.refs['username'].setState({errorText: 'This field is required'});
+    console.log(JSON.stringify(data));
+    console.log(source);
+    this.serverRequest = $.post(source, function (result) {
+      console.log(result);
+    }.bind(this));
+    console.log(this.serverRequest);
   };
 
   render() {
@@ -61,7 +71,7 @@ class Sign extends React.Component {
       <form>
         <TextField errorText="" ref="username" style={inputStyles.textField} hintText="Username"/>
         <br/>
-        <TextField ref="password" style={inputStyles.textField} hintText="Password" type="password"/>
+        <TextField errorText="" ref="password" style={inputStyles.textField} hintText="Password" type="password"/>
         <br/>
       </form>,
       <a onClick={() => this.select(1)}
@@ -72,11 +82,11 @@ class Sign extends React.Component {
       title = 'Create an account';
       content = [
         <form>
-          <TextField ref="email" style={inputStyles.textField} hintText="Email" type="email" key="email"/>
+          <TextField errorText="" ref="email" style={inputStyles.textField} hintText="Email" type="email" key="email"/>
           <br/>
-          <TextField ref="username" style={inputStyles.textField} hintText="Username" key="username"/>
+          <TextField errorText="" ref="username" style={inputStyles.textField} hintText="Username" key="username"/>
           <br/>
-          <TextField ref="password" style={inputStyles.textField} hintText="Password" type="password" key="password"/>
+          <TextField errorText="" ref="password" style={inputStyles.textField} hintText="Password" type="password" key="password"/>
           <br/>
         </form>,
         <a onClick={() => this.select(0)} style={{cursor: 'pointer'}}>Click here if you already have an account.</a>

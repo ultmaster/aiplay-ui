@@ -15,6 +15,7 @@ import Sign from './user/Sign';
 
 const appBarTheme = muiTheme.appBar;
 const palette = muiTheme.palette;
+const colors = require('material-ui/styles/colors');
 
 const styles = {
   wrapper: {
@@ -64,6 +65,18 @@ const styles = {
     height: 64,
     backgroundColor: palette.primary1Color,
     color: "white",
+  },
+  footer: {
+    padding: "72px 24px 72px 24px",
+    boxSizing: "border-box",
+    backgroundColor: colors.grey800,
+    textAlign: 'center'
+  },
+  footerContent: {
+    margin: "0px auto",
+    padding: 0,
+    color: colors.fullWhite,
+    maxWidth: 356
   }
 };
 
@@ -114,7 +127,8 @@ class Main extends Component {
             }
           />
           <Sign open={this.state.userDialogOpen}
-                close={this.handleUserButtonClose} />
+                close={this.handleUserButtonClose}
+                key="sign" />
 
           <Drawer
             docked={false}
@@ -135,11 +149,14 @@ class Main extends Component {
             </Menu>
           </Drawer>
           <div>
-            <div style={styles.container}>
-              {this.props.children}
-            </div>
+            {this.props.children}
           </div>
-
+          <div style={styles.footer}>
+            <p style={styles.footerContent}>
+              This is the footer....
+              but whatever....
+            </p>
+          </div>
         </div>
       </MuiThemeProvider>
     );
