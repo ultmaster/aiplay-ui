@@ -7,6 +7,7 @@ import Person from 'material-ui/svg-icons/social/person';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Menu from 'material-ui/Menu';
+import Divider from 'material-ui/Divider';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {browserHistory, Link, withRouter} from 'react-router';
 import muiTheme from './utils/theme';
@@ -123,9 +124,12 @@ class Main extends Component {
           >
             <div style={styles.logo}>AI Playground</div>
             <Menu>
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="problem">Problems</MenuItem>
+              <MenuItem onTouchTap={this.handleCloseDrawer} href="/">Home</MenuItem>
+              <Divider />
+              <MenuItem onTouchTap={this.handleCloseDrawer} href="/problem">Problems</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/competition">Competition</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/board">Board</MenuItem>
+              <Divider />
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/account">Sign In</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/account">Sign Up</MenuItem>
             </Menu>

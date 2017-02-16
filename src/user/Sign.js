@@ -60,7 +60,9 @@ class Sign extends React.Component {
     let content = [
       <form>
         <TextField errorText="" ref="username" style={inputStyles.textField} hintText="Username"/>
+        <br/>
         <TextField ref="password" style={inputStyles.textField} hintText="Password" type="password"/>
+        <br/>
       </form>,
       <a onClick={() => this.select(1)}
          style={{cursor: 'pointer', color: muiTheme.palette.primary1Color}}>
@@ -71,8 +73,11 @@ class Sign extends React.Component {
       content = [
         <form>
           <TextField ref="email" style={inputStyles.textField} hintText="Email" type="email" key="email"/>
+          <br/>
           <TextField ref="username" style={inputStyles.textField} hintText="Username" key="username"/>
+          <br/>
           <TextField ref="password" style={inputStyles.textField} hintText="Password" type="password" key="password"/>
+          <br/>
         </form>,
         <a onClick={() => this.select(0)} style={{cursor: 'pointer'}}>Click here if you already have an account.</a>
       ]
