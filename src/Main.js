@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import NavBar from './components/NavBar';
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import Person from 'material-ui/svg-icons/social/person';
 import Drawer from 'material-ui/Drawer';
@@ -8,68 +10,138 @@ import Menu from 'material-ui/Menu';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {browserHistory, Link} from 'react-router';
+import {browserHistory, Link, withRouter} from 'react-router';
+
+let _colors = require('material-ui/styles/colors');
+let mainTheme = lightBaseTheme;
+mainTheme.palette.primary1Color = _colors.indigo600;
+mainTheme.palette.primary2Color = _colors.indigo900;
+mainTheme.palette.accent1Color = _colors.pink500;
+
+const muiTheme = getMuiTheme(lightBaseTheme);
+const appBarTheme = muiTheme.appBar;
+const palette = muiTheme.palette;
 
 const styles = {
   wrapper: {
     padding: 0,
     margin: 0,
   },
-  container: {
-    "padding-left": "15px",
-    "padding-right": "15px",
-    "max-width": "900px",
-    "margin-left": "auto",
-    "margin-right": "auto",
+  appBar: {
+    flatButton: {
+      color: appBarTheme.textColor,
+      marginTop: (muiTheme.button.iconButtonSize - 36) / 2 + 1
+    },
+    title: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      margin: 0,
+      paddingTop: 0,
+      letterSpacing: 0,
+      fontSize: 20,
+      fontWeight: 300,
+      color: appBarTheme.textColor,
+      height: appBarTheme.height,
+      lineHeight: appBarTheme.height + 'px',
+    },
+    iconButtonStyle: {
+      marginTop: (appBarTheme.height - muiTheme.button.iconButtonSize) / 2,
+      marginRight: 8,
+      marginLeft: -16
+    },
+    iconButtonIconStyle: {
+      fill: appBarTheme.textColor,
+      color: appBarTheme.textColor
+    }
   },
   drawer: {
-    width: "300px",
+    width: "256px",
+  },
+  logo: {
+    cursor: "pointer",
+    fontSize: "24px",
+    fontWeight: 300,
+    lineHeight: "64px",
+    paddingLeft: "24px",
+    marginBottom: "8px",
+    height: "64px",
+    backgroundColor: muiTheme.palette.primary1Color,
+    color: "white",
   }
 };
 
-const muiTheme = getMuiTheme(lightBaseTheme);
 
 class Main extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = {open: false, tablet: window.matchMedia(`(max-width: 980px)`).matches};
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
   handleCloseDrawer = () => this.setState({open: false});
+  handleOpenDrawer = () => this.setState({open: true});
+
+  componentWillMount = () => {
+    const mql = window.matchMedia(`(max-width: 980px)`);
+    mql.addListener(this.mediaQueryChanged);
+    this.setState({mql: mql});
+  };
+
+  mediaQueryChanged = () => {
+    const currentMatch = this.state.mql.matches;
+    const currentState = this.state.tablet;
+    if (currentMatch != currentState) {
+      this.setState({tablet: currentMatch});
+    }
+  };
 
   render() {
+
     return (
 
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.wrapper}>
-            <AppBar
-              iconElementRight={
-                <IconButton href="/user"><Person /></IconButton>
-              }
-              onLeftIconButtonTouchTap={this.handleToggle}
+          <div style={styles.container}>
+
+          </div>
+          <AppBar
+            title={
+              <div style={styles.appBar.title}>AI Playground</div>
+            }
+            onLeftIconButtonTouchTap={this.handleOpenDrawer}
+            iconElementRight={
+              <div style={{display:this.state.tablet?'none':'block',marginRight:8}}>
+                <FlatButton style={styles.appBar.flatButton} href="/#/problem/" label="Problems"/>
+                <FlatButton style={styles.appBar.flatButton} href="/#/competition/" label="Competitions"/>
+                <FlatButton style={styles.appBar.flatButton} href="/#/account/" label="Account"/>
+              </div>
+            }
             />
           <Drawer
-            open={this.state.open}
             docked={false}
+            open={this.state.open}
             onRequestChange={(open) => this.setState({open})}
             style={styles.drawer}
           >
+            <div style={styles.logo}>AI Playground</div>
             <Menu>
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="/problem">Problems</MenuItem>
+              <MenuItem onTouchTap={this.handleCloseDrawer} href="problem">Problems</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/competition">Competition</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/board">Board</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/user">Sign In / Sign Up</MenuItem>
             </Menu>
           </Drawer>
-          <div style={styles.container}>
-            {this.props.children}
+          <div>
+            <div style={styles.container}>
+              {this.props.children}
+            </div>
           </div>
+
         </div>
       </MuiThemeProvider>
     );
   }
 }
 
-export default Main;
+export default withRouter(Main);

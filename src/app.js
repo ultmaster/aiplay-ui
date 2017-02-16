@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Main from './Main'; // Our custom react component
+import Auth from './user/auth';
+
 require('./css/main.scss');
 
 
@@ -11,44 +13,6 @@ require('./css/main.scss');
 injectTapEventPlugin();
 
 
-const App = React.createClass({
-    render() {
-        return (
-            <div>
-                <h1>App</h1>
-                <ul>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/inbox">Inbox</Link></li>
-                </ul>
-                {this.props.children}
-            </div>
-        )
-    }
-});
-
-const About = React.createClass({
-    render() {
-      console.log('about');
-        return <h3>About</h3>
-    }
-});
-
-const Inbox = React.createClass({
-    render() {
-        return (
-            <div>
-                <h2>Inbox</h2>
-                {this.props.children || "Welcome to your Inbox"}
-            </div>
-        )
-    }
-});
-
-const Message = React.createClass({
-    render() {
-        return <h3>Message {this.props.params.id}</h3>
-    }
-});
 
 const NotFound = React.createClass({
     render() {
@@ -62,14 +26,10 @@ const NotFound = React.createClass({
 });
 
 render((
-    <Router history={browserHistory}>
-        <Route path="/" component={Main}>
-            <Route path="about" component={About} />
-            <Route path="inbox" component={Inbox}>
-                <Route path="messages/:id" component={Message} />
-            </Route>
-            <Route path="notok" component={Main} />
-        </Route>
-        <Route path="*" component={NotFound} />
-    </Router>
+  <Router history={browserHistory}>
+    <Route path="/" component={Main}>
+      <Route path="user" component={Auth} />
+      <Route path="*" component={NotFound} />
+    </Route>
+  </Router>
 ), document.getElementById('app'));
