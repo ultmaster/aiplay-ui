@@ -7,18 +7,11 @@ import Person from 'material-ui/svg-icons/social/person';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Menu from 'material-ui/Menu';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {browserHistory, Link, withRouter} from 'react-router';
+import muiTheme from './utils/theme';
+import Sign from './user/Sign';
 
-let _colors = require('material-ui/styles/colors');
-let mainTheme = lightBaseTheme;
-mainTheme.palette.primary1Color = _colors.indigo600;
-mainTheme.palette.primary2Color = _colors.indigo900;
-mainTheme.palette.accent1Color = _colors.pink500;
-
-const muiTheme = getMuiTheme(lightBaseTheme);
 const appBarTheme = muiTheme.appBar;
 const palette = muiTheme.palette;
 
@@ -78,30 +71,15 @@ class Main extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false, tablet: window.matchMedia(`(max-width: 980px)`).matches};
+    this.state = {open: false, userDialogOpen: false};
   }
 
   handleCloseDrawer = () => this.setState({open: false});
   handleOpenDrawer = () => this.setState({open: true});
-
-  componentWillMount = () => {
-    const mql = window.matchMedia(`(max-width: 980px)`);
-    mql.addListener(this.mediaQueryChanged);
-    this.setState({mql: mql});
-  };
-
-  mediaQueryChanged = () => {
-    const currentMatch = this.state.mql.matches;
-    const currentState = this.state.tablet;
-    if (currentMatch != currentState) {
-      this.setState({tablet: currentMatch});
-    }
-  };
+  handleUserButton = () => this.setState({userDialogOpen: true});
+  handleUserButtonClose = () => this.setState({userDialogOpen: false});
 
   render() {
-
-    const handleUserButton = this.props.handleUserButton;
-
     return (
 
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -119,7 +97,7 @@ class Main extends Component {
                 minWidth={960}
                 widthMethod="pageWidth"
               >
-                <div style={{marginRight:8}}>
+                <div style={{marginRight: 8}}>
 
                   <FlatButton style={styles.appBar.flatButton} label="Problems" href="/problem"/>
                   <FlatButton style={styles.appBar.flatButton} label="Competitions" href="/competition"/>
@@ -133,7 +111,10 @@ class Main extends Component {
               </Breakpoint>
 
             }
-            />
+          />
+          <Sign open={this.state.userDialogOpen}
+                close={this.handleUserButtonClose} />
+
           <Drawer
             docked={false}
             open={this.state.open}
