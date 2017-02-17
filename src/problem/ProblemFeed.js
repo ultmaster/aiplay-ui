@@ -15,6 +15,7 @@ class Introduction extends React.Component {
   handleUserButtonClose = () => this.setState({userDialogOpen: false});
 
   render() {
+    console.log(palette);
     return (
       <div className="container" style={{marginBottom: 120}}>
         <br/><br/><br/>

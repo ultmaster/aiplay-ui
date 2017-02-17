@@ -85,13 +85,19 @@ class Main extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false, userDialogOpen: false};
+    this.state = {open: false, userDialogOpen: false, userDialogState: 0};
   }
 
   handleCloseDrawer = () => this.setState({open: false});
   handleOpenDrawer = () => this.setState({open: true});
   handleUserButton = () => this.setState({userDialogOpen: true});
   handleUserButtonClose = () => this.setState({userDialogOpen: false});
+  handleUserDialogState = (val) => this.setState({userDialogState: val});
+  handleUserButtonWithVal = (val) => {
+    this.handleCloseDrawer();
+    this.handleUserDialogState(val);
+    this.handleUserButton();
+  };
 
   render() {
     return (
@@ -127,7 +133,9 @@ class Main extends Component {
             }
           />
           <Sign open={this.state.userDialogOpen}
-                close={this.handleUserButtonClose}
+                selected={this.state.userDialogState}
+                onClose={this.handleUserButtonClose}
+                onSelected={this.handleUserDialogState}
                 key="sign" />
 
           <Drawer
@@ -144,8 +152,8 @@ class Main extends Component {
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/competition">Competition</MenuItem>
               <MenuItem onTouchTap={this.handleCloseDrawer} href="/board">Board</MenuItem>
               <Divider />
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="/account">Sign In</MenuItem>
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="/account">Sign Up</MenuItem>
+              <MenuItem onTouchTap={() => this.handleUserButtonWithVal(0)}>Sign In</MenuItem>
+              <MenuItem onTouchTap={() => this.handleUserButtonWithVal(1)}>Sign Up</MenuItem>
             </Menu>
           </Drawer>
           <div>

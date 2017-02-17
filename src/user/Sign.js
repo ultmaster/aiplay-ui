@@ -22,33 +22,45 @@ class Sign extends React.Component {
   constructor(props) {
     super(props);
     this.state = {open: false, selectedIndex: 0};
-    this.handleClose = props.close;
+    this.handleClose = props.onClose;
+    this.select = props.onSelected;
   }
 
-  componentWillReceiveProps = (nextProps) => this.setState({open: nextProps.open});
-  select = (index) => this.setState({selectedIndex: index});
+  componentWillReceiveProps = (nextProps) => {
+    this.setState({open: nextProps.open});
+    if (nextProps.selected != null) {
+      this.setState({selectedIndex: nextProps.selected});
+    }
+  };
 
   signSubmit = (event) => {
     let keys = [], source = '';
     if (this.state.selectedIndex == 0) {
       keys = ['username', 'password'];
-      source = Settings.source + '/login';
+      source = Settings.source + '/login/';
     } else {
       keys = ['email', 'username', 'password'];
-      source = Settings.source + '/register';
+      source = Settings.source + '/register/';
     }
     let data = {};
     for (const key of keys) {
       data[key] = this.refs[key].getValue();
     }
-    console.log(data);
-    // SEND
     console.log(JSON.stringify(data));
-    console.log(source);
-    this.serverRequest = $.post(source, function (result) {
-      console.log(result);
-    }.bind(this));
-    console.log(this.serverRequest);
+    const result = $.ajax({
+      type: 'POST',
+      url: source,
+      data: data,
+      complete: function(data) {
+        for (const key in data.responseJSON) {
+          console.log(data.responseJSON);
+          if (data.responseJSON.hasOwnProperty(key) && this.refs.hasOwnProperty(key)) {
+            this.refs[key].setState({errorText: data.responseJSON[key]});
+          }
+        }
+      }.bind(this)
+    });
+
   };
 
   render() {
@@ -65,8 +77,6 @@ class Sign extends React.Component {
     ];
 
     let title = 'Sign In Now';
-
-
     let content = [
       <form>
         <TextField errorText="" ref="username" style={inputStyles.textField} hintText="Username"/>
