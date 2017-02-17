@@ -10,18 +10,14 @@ import Menu from 'material-ui/Menu';
 import Divider from 'material-ui/Divider';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {browserHistory, Link, withRouter} from 'react-router';
-import muiTheme from './utils/theme';
-import Sign from './user/Sign';
+import muiTheme from './theme';
+import Sign from '../user/Sign';
 
 const appBarTheme = muiTheme.appBar;
 const palette = muiTheme.palette;
 const colors = require('material-ui/styles/colors');
 
 const styles = {
-  wrapper: {
-    padding: 0,
-    margin: 0,
-  },
   appBar: {
     flatButton: {
       color: appBarTheme.textColor,
@@ -67,10 +63,7 @@ const styles = {
     color: "white",
   },
   footer: {
-    padding: "72px 24px 72px 24px",
-    boxSizing: "border-box",
-    backgroundColor: colors.grey800,
-    textAlign: 'center'
+    backgroundColor: colors.grey800
   },
   footerContent: {
     margin: "0px auto",
@@ -100,16 +93,16 @@ class Main extends Component {
   };
 
   render() {
+    let title = 'AI Playground';
+    if (this.props.hasOwnProperty('title'))
+      title = this.props.title;
     return (
 
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={styles.wrapper}>
-          <div style={styles.container}>
-
-          </div>
+        <div className="wrapper">
           <AppBar
             title={
-              <div style={styles.appBar.title}>AI Playground</div>
+              <div style={styles.appBar.title}>{title}</div>
             }
             onLeftIconButtonTouchTap={this.handleOpenDrawer}
             iconElementRight={
@@ -157,12 +150,11 @@ class Main extends Component {
             </Menu>
           </Drawer>
           <div>
-            {this.props.children}
+            {this.props.content}
           </div>
-          <div style={styles.footer}>
+          <div className="footer" style={styles.footer}>
             <p style={styles.footerContent}>
-              This is the footer....
-              but whatever....
+              AI Playground &copy; 2016 - 2017
             </p>
           </div>
         </div>
@@ -171,4 +163,4 @@ class Main extends Component {
   }
 }
 
-export default withRouter(Main);
+export default Main;

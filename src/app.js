@@ -2,10 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Main from './Main';
 import Introduction from './home/introduction';
 import NotFound from './error/404';
-
+import ProblemFeed from './problem/ProblemFeed';
 
 require('./css/main.scss');
 
@@ -15,9 +14,8 @@ injectTapEventPlugin();
 
 render((
   <Router history={browserHistory}>
-    <Route path="/" component={Main}>
-      <IndexRoute component={Introduction} />
-      <Route path="*" component={NotFound} />
-    </Route>
+    <Route path="/" component={Introduction} />
+    <Route path="/problem" component={ProblemFeed} />
+    <Route path="*" component={NotFound} />
   </Router>
 ), document.getElementById('app'));

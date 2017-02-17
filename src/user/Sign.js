@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import muiTheme from '../utils/theme';
+import muiTheme from '../main/theme';
 import Settings from '../settings';
 
 const customContentStyle = {

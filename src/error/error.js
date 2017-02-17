@@ -1,6 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import muiTheme from '../utils/theme';
+import muiTheme from '../main/theme';
 const palette = muiTheme.palette;
 
 class ErrorPage extends React.Component {
