@@ -47,17 +47,21 @@ class Sign extends React.Component {
       data[key] = this.refs[key].getValue();
     }
     console.log(JSON.stringify(data));
-    const result = $.ajax({
+    // SEND REQUEST
+    $.ajax({
       type: 'POST',
       url: source,
       data: data,
-      complete: function(data) {
+      error: function(data) {
         for (const key in data.responseJSON) {
-          console.log(data.responseJSON);
           if (data.responseJSON.hasOwnProperty(key) && this.refs.hasOwnProperty(key)) {
             this.refs[key].setState({errorText: data.responseJSON[key]});
           }
         }
+      }.bind(this),
+      success: function(data) {
+        console.log(data.responseJSON);
+        this.handleClose();
       }.bind(this)
     });
 
