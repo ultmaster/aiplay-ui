@@ -93,9 +93,13 @@ class Main extends Component {
   };
 
   render() {
+    /* AppBar Related */
     let title = 'AI Playground';
     if (this.props.hasOwnProperty('title'))
       title = this.props.title;
+    let appBarDepth = 1;
+    if (this.props.hasOwnProperty('appBarDepth'))
+      appBarDepth = this.props.appBarDepth;
     return (
 
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -105,6 +109,7 @@ class Main extends Component {
               <div style={styles.appBar.title}>{title}</div>
             }
             onLeftIconButtonTouchTap={this.handleOpenDrawer}
+            zDepth={appBarDepth}
             iconElementRight={
               <Breakpoint
                 minWidth={960}
@@ -122,7 +127,6 @@ class Main extends Component {
 
                 </div>
               </Breakpoint>
-
             }
           />
           <Sign open={this.state.userDialogOpen}
