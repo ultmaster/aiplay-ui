@@ -3,7 +3,6 @@ import TextField from 'material-ui/TextField';
 import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import muiTheme from '../main/theme';
-const palette = muiTheme.palette;
 import Main from '../main/Main';
 
 class ProblemFeed extends React.Component {
@@ -17,6 +16,7 @@ class ProblemFeed extends React.Component {
   handleUserButtonClose = () => this.setState({userDialogOpen: false});
 
   render() {
+    console.log(this.props.params.id);
     const content = (
       <div className="container">
         <div className="section">
@@ -34,7 +34,7 @@ class ProblemFeed extends React.Component {
               showExpandableButton={true}
             />
             <CardActions>
-              <FlatButton secondary={true} label="View Problem" href="/problem/1" />
+              <FlatButton secondary={true} label="View Problem" />
               <FlatButton label="Ranklist" />
             </CardActions>
             <CardText expandable={true}>
@@ -47,7 +47,7 @@ class ProblemFeed extends React.Component {
         </div>
       </div>
     );
-    return <Main title="Problems" content={content} />;
+    return <Main title="A + B Problem" content={content} />;
   }
 }
 

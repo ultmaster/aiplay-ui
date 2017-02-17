@@ -23,7 +23,7 @@ const config = {
       },
       {
         test: /\.(woff|woff2|ttf|eot)$/,
-        loaders: ['url-loader?limit=10000&name=./fonts/[name].[ext]'],
+        loaders: ['url-loader?limit=10000&name=[path][name].[ext]'],
         exclude: [nodeModulesPath]
       }
     ],

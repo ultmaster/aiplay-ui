@@ -18,6 +18,7 @@ config.devServer = {
 config.output = {
   filename: '[name].js',
   chunkFilename: '[name].js',
+  publicPath: '/'
 };
 
 config.entry.app.unshift(

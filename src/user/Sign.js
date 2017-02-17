@@ -1,11 +1,12 @@
 import React from 'react';
-var $ = require('jquery');
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
 import muiTheme from '../main/theme';
 import Settings from '../settings';
+
+const $ = require('jquery');
 
 const customContentStyle = {
   maxWidth: 400
@@ -21,7 +22,7 @@ class Sign extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false, selectedIndex: 0};
+    this.state = {open: false, successOpen: false, selectedIndex: 0};
     this.handleClose = props.onClose;
     this.select = props.onSelected;
   }
@@ -62,6 +63,7 @@ class Sign extends React.Component {
       success: function(data) {
         console.log(data.responseJSON);
         this.handleClose();
+        this.setState({successOpen: true});
       }.bind(this)
     });
 
@@ -119,6 +121,12 @@ class Sign extends React.Component {
         >
           {content}
         </Dialog>
+        <Snackbar
+          open={this.state.successOpen}
+          message="Success!"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </div>
     );
   }

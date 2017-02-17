@@ -5,6 +5,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import Introduction from './home/introduction';
 import NotFound from './error/404';
 import ProblemFeed from './problem/ProblemFeed';
+import Problem from './problem/Problem';
 
 require('./css/main.scss');
 
@@ -16,6 +17,7 @@ render((
   <Router history={browserHistory}>
     <Route path="/" component={Introduction} />
     <Route path="/problem" component={ProblemFeed} />
+    <Route path="/problem/:id" component={Problem} />
     <Route path="*" component={NotFound} />
   </Router>
 ), document.getElementById('app'));
