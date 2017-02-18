@@ -19,7 +19,7 @@ import ProblemSubmitPage from './ProblemSubmitPage';
 // };
 
 
-class ProblemFeed extends React.Component {
+class Problem extends React.Component {
 
   constructor(props) {
     super(props);
@@ -64,4 +64,4 @@ class ProblemFeed extends React.Component {
   }
 }
 
-export default ProblemFeed;
+export default Problem;

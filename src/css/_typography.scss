@@ -58,3 +58,10 @@ b, .bold { font-weight: 700; }
 .center, .center-align {
   text-align: center;
 }
+
+// Code styles
+
+$code-font-family: monospace, monospace;
+pre {
+  font: $code-font-family;
+}

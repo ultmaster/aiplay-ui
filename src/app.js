@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Introduction from './home/introduction';
+import Introduction from './home/Introduction';
 import NotFound from './error/404';
 import ProblemFeed from './problem/ProblemFeed';
 import Problem from './problem/Problem';

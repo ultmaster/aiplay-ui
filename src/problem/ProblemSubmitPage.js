@@ -6,8 +6,9 @@ import muiTheme from '../main/theme';
 const palette = muiTheme.palette;
 import Main from '../main/Main';
 import Submit from './Submit';
+import Submission from './Submission';
 
-class ProblemFeed extends React.Component {
+class ProblemSubmitPage extends React.Component {
 
 
   render() {
@@ -15,10 +16,11 @@ class ProblemFeed extends React.Component {
       <div className="section">
         <div className="container">
           <Submit />
+          <Submission />
         </div>
       </div>
     );
   }
 }
 
-export default ProblemFeed;
+export default ProblemSubmitPage;
