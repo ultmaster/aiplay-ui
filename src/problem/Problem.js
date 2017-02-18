@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import muiTheme from '../main/theme';
 import Main from '../main/Main';
 import ProblemDescription from './ProblemDescription';
+import ProblemSubmitPage from './ProblemSubmitPage';
 
 // TODO: depth
 // const zDepth = 1;
@@ -33,13 +34,11 @@ class ProblemFeed extends React.Component {
     console.log(muiTheme);
     const content = (
         <Tabs>
-          <Tab label="Description">
+          <Tab label="Problem">
             <ProblemDescription />
           </Tab>
           <Tab label="Submit" >
-            <div>
-              <h2>Submit Code</h2>
-            </div>
+            <ProblemSubmitPage />
           </Tab>
           <Tab label="Board" >
             <div>
