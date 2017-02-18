@@ -16,12 +16,13 @@ class Introduction extends React.Component {
   handleUserButtonClose = () => this.setState({userDialogOpen: false});
 
   render() {
+    console.log(palette);
     const content = (
-      <div className="section">
+      <div className="section introduction">
         <div className="container">
           <br/><br/><br/>
           <h1 className="center header" style={{color: palette.textColor}}>AI Playground</h1>
-          <p className="center" style={{color: palette.textColor, fontSize: 19}}>It is more than coding.</p>
+          <p className="center sub-header">It is more than coding.</p>
           <div className="center">
             <RaisedButton label="Get started"
                           labelStyle={{fontSize: 19, lineHeight: '50px', paddingLeft: 20, paddingRight: 20}}

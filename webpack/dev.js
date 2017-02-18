@@ -27,10 +27,9 @@ config.entry.app.unshift(
 );
 
 config.plugins.unshift(
-  new webpack.HotModuleReplacementPlugin()
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoEmitOnErrorsPlugin()
 );
 
 module.exports = config;
-
-
 

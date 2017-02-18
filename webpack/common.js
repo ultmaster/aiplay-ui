@@ -7,7 +7,6 @@ const config = {
     app: [path.resolve(__dirname, '../src/app.js')],
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
     loaders: [

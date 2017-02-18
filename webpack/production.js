@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const buildPath = path.resolve(__dirname, '../dist');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 var config  = require('./common');
 
 config.devtool  = 'source-map';
@@ -33,6 +34,13 @@ config.plugins.unshift(
     filename: path.resolve(buildPath, 'index.html'),
     template: 'assets/index.html',
     inject: 'body'
+  }),
+  new CompressionPlugin({
+    asset: "[path].gz[query]",
+    algorithm: "gzip",
+    test: /\.js$|\.css$|\.html$/,
+    threshold: 10240,
+    minRatio: 0.8
   })
 );
 

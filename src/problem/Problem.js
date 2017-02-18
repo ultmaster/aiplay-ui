@@ -5,6 +5,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import FlatButton from 'material-ui/FlatButton';
 import muiTheme from '../main/theme';
 import Main from '../main/Main';
+import ProblemDescription from './ProblemDescription';
 
 // TODO: depth
 // const zDepth = 1;
@@ -15,6 +16,7 @@ import Main from '../main/Main';
 //     zIndex: muiTheme.appBar.zIndex
 //   }
 // };
+
 
 class ProblemFeed extends React.Component {
 
@@ -32,14 +34,11 @@ class ProblemFeed extends React.Component {
     const content = (
         <Tabs>
           <Tab label="Description">
-            <div className="container">
-              <h2 className="center">Tab One</h2>
-              <p>
-                This is an example tab.
-              </p>
-              <p>
-                You can put any sort of HTML or react component in here. It even keeps the component state!
-              </p>
+            <ProblemDescription />
+          </Tab>
+          <Tab label="Submit" >
+            <div>
+              <h2>Submit Code</h2>
             </div>
           </Tab>
           <Tab label="Board" >
