@@ -1,12 +1,9 @@
 var express = require('express');
 var app = express();
 
-if (process.env.NODE_ENV == 'dev') {
-  require('./webpackdev.server')(app)
-}
+app.use(express.static('public'));
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
-})
 
-app.listen(8080);
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
