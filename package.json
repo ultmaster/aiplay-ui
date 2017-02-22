@@ -7,11 +7,20 @@
     "url": "https://github.com/ultmaster/aiplay-ui"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack/dev.js --progress --inline --colors",
-    "build": "webpack --config webpack/production.js --progress --colors"
+    "start": "node server",
+    "build": "webpack --config webpack.config.js --progress --colors"
   },
   "private": true,
   "dependencies": {
-    "express": "^4.14.1"
+    "angular": "1.5.11",
+    "angular-animate": "1.5.11",
+    "angular-aria": "1.5.11",
+    "angular-material": "^1.1.3",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "express": "^4.14.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.1",
+    "webpack-hot-middleware": "^2.17.0"
   }
 }

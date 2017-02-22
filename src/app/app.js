@@ -1,10 +1,28 @@
-var app = angular.module('app', ['ngMaterial']);
+import ngMaterial from 'angular-material';
+import angular from 'angular';
 
+let App = () => {
+  return {
+    template: require('./app.html'),
+    controller: 'AppCtrl'
+  }
+};
+
+let app = angular.module('app', [ngMaterial]);
+app.directive('app', App);
 app.controller('AppCtrl', AppCtrl);
 
-function AppCtrl($scope) {
+function AppCtrl($scope, $mdSidenav) {
   $scope.currentNavItem = 'page1';
+  $scope.toggleLeft = buildToggler('left');
+  $scope.toggleRight = buildToggler('right');
 
+  function buildToggler(componentId) {
+    console.log('hello');
+    return function() {
+      $mdSidenav(componentId).toggle();
+    };
+  }
 }
 
 app.config(function($mdThemingProvider){
