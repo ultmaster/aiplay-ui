@@ -1,72 +1,45 @@
 import ngMaterial from 'angular-material';
 import angular from 'angular';
+import ngRoute from 'angular-route';
+import 'angular-material/angular-material.css';
+
+// import AppHtml from './app.html';
+import AppBar from './appbar/appbar.js';
 
 let App = () => {
   return {
-    template: require('./app.html'),
-    controller: 'AppCtrl'
+    template: '<app-bar></app-bar>',
+    controller: AppCtrl
   }
 };
 
-let app = angular.module('app', [ngMaterial]);
+let app = angular.module('app', [ngMaterial, ngRoute]);
 app.directive('app', App);
+app.directive('appBar', AppBar);
 app.controller('AppCtrl', AppCtrl);
 
-function AppCtrl($scope, $mdSidenav) {
+function AppCtrl($scope) {
   $scope.currentNavItem = 'page1';
-  $scope.toggleLeft = buildToggler('left');
-  $scope.toggleRight = buildToggler('right');
-
-  function buildToggler(componentId) {
-    console.log('hello');
-    return function() {
-      $mdSidenav(componentId).toggle();
-    };
-  }
 }
+//
+// app.config(function($mdThemingProvider){
+//   // Update the theme colors to use themes on font-icons
+//   // $mdThemingProvider.theme('default')
+//   //   .primaryPalette("red")
+//   //   .accentPalette('green')
+//   //   .warnPalette('blue');
+// });
 
-app.config(function($mdThemingProvider){
-  // Update the theme colors to use themes on font-icons
-  // $mdThemingProvider.theme('default')
-  //   .primaryPalette("red")
-  //   .accentPalette('green')
-  //   .warnPalette('blue');
+app.config(function($routeProvider) {
+  $routeProvider
+    .when("/banana", {
+      template : "<h1>Banana</h1><p>Bananas contain around 75% water.</p>"
+    })
+    .when("/tomato", {
+      template : "<h1>Tomato</h1><p>Tomatoes contain around 95% water.</p>"
+    })
+    .otherwise({
+      template : "<h1>None</h1><p>Nothing has been selected</p>"
+    });
 });
 
-app.controller('NavController', function($scope, $location) {
-
-    // Public.
-    // "navItems"存储着导航栏的栏目。
-    $scope.navItems = [
-      {
-        title: 'Home',
-        locationUrl: '/',
-        href: '/app/index.html#' + '/'
-      },
-      {
-        title: 'About Me',
-        locationUrl: '/aboutMe',
-        href: '/app/index.html#' + '/aboutMe'
-      },
-      {
-        title: 'Management',
-        locationUrl: '/manageHome',
-        href: '/app/index.html#' + '/manageHome'
-      },
-    ]
-    // .selectedNavItem变量存储当前选择项，默认的选择项是"Home"。
-    $scope.selectedNavItem = 'Home'
-    // 栏目click时触发的方法。
-    $scope.itemClick = function(itemTitle) {
-      $scope.selectedNavItem = itemTitle
-    }
-    // 初始化。
-    // 判断当前地址栏路径属于哪个导航栏目。
-    var currentLocation = $location.path()
-    for (var i = 0, len = $scope.navItems.length; i < len; i++) {
-      var navItem = $scope.navItems[i]
-      if (currentLocation == navItem.locationUrl) {
-        $scope.selectedNavItem = navItem.title
-      }
-    }
-  });
