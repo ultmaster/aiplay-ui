@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Introduction.scss';
-import $ from 'jquery';
 
 const content = (
   <div>
@@ -149,24 +148,23 @@ const content = (
 class Introduction extends React.Component {
 
   componentDidMount() {
-    setTimeout(function () {
-      console.log("mount");
-      $('.masthead')
-        .visibility({
-          once: false,
-          onBottomPassed: function () {
-            $('.fixed.menu').transition('fade in');
-          },
-          onBottomPassedReverse: function () {
-            $('.fixed.menu').transition('fade out');
-          }
-        })
-      ;
-      // create sidebar and attach to menu open
-      $('.ui.sidebar')
-        .sidebar('attach events', '.toc.item')
-      ;
-    }, 3000);
+    console.log("mount");
+    $('.masthead')
+      .visibility({
+        once: false,
+        onBottomPassed: function () {
+          $('.fixed.menu').transition('fade in');
+          console.log("cleared");
+        },
+        onBottomPassedReverse: function () {
+          $('.fixed.menu').transition('fade out');
+        }
+      })
+    ;
+    // create sidebar and attach to menu open
+    $('.ui.sidebar')
+      .sidebar('attach events', '.toc.item')
+    ;
 
     // TODO: remain unsolved
   }

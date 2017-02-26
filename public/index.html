@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AI Playground</title>
-    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="jquery/jquery.js"></script>
     <link rel="stylesheet" href="semantic/semantic.css" >
     <script src="semantic/semantic.js"></script>
 
@@ -17,5 +17,25 @@
 
   <body>
     <div class="wrapper" id="app"></div>
+    <script>
+      $(document).ready(function() {
+        $('.masthead')
+          .visibility({
+            once: false,
+            onBottomPassed: function () {
+              $('.fixed.menu').transition('fade in');
+              console.log("cleared");
+            },
+            onBottomPassedReverse: function () {
+              $('.fixed.menu').transition('fade out');
+            }
+          })
+        ;
+        // create sidebar and attach to menu open
+        $('.ui.sidebar')
+          .sidebar('attach events', '.toc.item')
+        ;
+      });
+    </script>
   </body>
 </html>
