@@ -7,7 +7,7 @@ import NotFound from './error/404';
 import ProblemFeed from './problem/ProblemFeed';
 import Problem from './problem/Problem';
 
-require('./css/main.scss');
+import './css/main.scss';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
