@@ -1,34 +1,26 @@
-<div ng-controller="AppCtrl" ng-cloak>
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <md-button ng-click="toggleLeft()" class="md-icon-button" aria-label="Settings">
-        <md-icon md-svg-icon="/img/icons/ic_menu_24px.svg"></md-icon>
-      </md-button>
+<app-bar></app-bar>
+<md-content class="md-padding">
+  <md-card>
+    <md-content>
+<p><a href="#/">Main</a></p>
 
-      <h2 flex md-truncate>AI Playground</h2>
+<a href="#banana">Banana</a>
+<a href="#tomato">Tomato</a>
 
-      <md-button class="md-icon-button" aria-label="Favorite">
-        <md-icon md-font-icon="android" aria-label="android"></md-icon>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="More">
-        <md-icon md-svg-icon="/img/icons/ic_person_24px.svg"></md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
-  <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
+<p>Click on the links to change the content.</p>
 
-    <md-toolbar class="md-theme-indigo">
-      <h1 class="md-toolbar-tools">AI Playground</h1>
-    </md-toolbar>
-
-    <md-content layout-margin>
-      <p>
-        This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
-      </p>
-      <md-button ng-click="toggleLeft()" class="md-accent">
-        Close this Sidenav
-      </md-button>
-    </md-content>
-
-  </md-sidenav>
+<p>Use the "otherwise" method to define what to display when none of the links are clicked.</p>
+<div layout="row" layout-xs="column">
+  <div flex>
+    I'm above on mobile, and to the left on larger devices.
+  </div>
+  <div flex>
+    I'm below on mobile, and to the right on larger devices.
+  </div>
 </div>
+
+<div ng-view></div>
+    </md-content>
+  </md-card>
+
+</md-content>

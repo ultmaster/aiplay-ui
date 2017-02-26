@@ -3,12 +3,12 @@ import angular from 'angular';
 import ngRoute from 'angular-route';
 import 'angular-material/angular-material.css';
 
-// import AppHtml from './app.html';
+import AppHtml from './app.html';
 import AppBar from './appbar/appbar.js';
 
 let App = () => {
   return {
-    template: '<app-bar></app-bar>',
+    template: AppHtml,
     controller: AppCtrl
   }
 };
@@ -19,7 +19,7 @@ app.directive('appBar', AppBar);
 app.controller('AppCtrl', AppCtrl);
 
 function AppCtrl($scope) {
-  $scope.currentNavItem = 'page1';
+
 }
 //
 // app.config(function($mdThemingProvider){
