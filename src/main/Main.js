@@ -1,168 +1,43 @@
 import React, {Component} from 'react';
-import {Breakpoint} from 'react-responsive-grid';
-import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
-import IconButton from 'material-ui/IconButton';
-import Person from 'material-ui/svg-icons/social/person';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import Menu from 'material-ui/Menu';
-import Divider from 'material-ui/Divider';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {browserHistory, Link, withRouter} from 'react-router';
-import muiTheme from './theme';
-import Sign from '../user/Sign';
-
-const appBarTheme = muiTheme.appBar;
-const palette = muiTheme.palette;
-const colors = require('material-ui/styles/colors');
-
-const styles = {
-  appBar: {
-    flatButton: {
-      color: appBarTheme.textColor,
-      verticalAlign: 'top',
-      marginTop: (muiTheme.button.iconButtonSize - 36) / 2 + 1
-    },
-    title: {
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      margin: 0,
-      paddingTop: 0,
-      letterSpacing: 0,
-      fontSize: 20,
-      fontWeight: 300,
-      color: appBarTheme.textColor,
-      height: appBarTheme.height,
-      lineHeight: appBarTheme.height + 'px',
-    },
-    iconButtonStyle: {
-      marginRight: 8,
-      marginLeft: 0,
-      padding: 0,
-      verticalAlign: 'center'
-    },
-    iconButtonIconStyle: {
-      fill: appBarTheme.textColor,
-      color: appBarTheme.textColor
-    }
-  },
-  drawer: {
-    width: "256px",
-  },
-  logo: {
-    cursor: "pointer",
-    fontSize: 20,
-    fontWeight: 300,
-    lineHeight: "64px",
-    paddingLeft: 18,
-    marginBottom: 8,
-    height: 64,
-    backgroundColor: palette.primary1Color,
-    color: "white",
-  },
-  footer: {
-    backgroundColor: colors.grey800
-  },
-  footerContent: {
-    margin: "0px auto",
-    padding: 0,
-    color: colors.fullWhite,
-    maxWidth: 356
-  }
-};
-
+import AppBar from '../appbar/AppBar';
+import './Main.scss';
 
 class Main extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {open: false, userDialogOpen: false, userDialogState: 0};
-  }
-
-  handleCloseDrawer = () => this.setState({open: false});
-  handleOpenDrawer = () => this.setState({open: true});
-  handleUserButton = () => this.setState({userDialogOpen: true});
-  handleUserButtonClose = () => this.setState({userDialogOpen: false});
-  handleUserDialogState = (val) => this.setState({userDialogState: val});
-  handleUserButtonWithVal = (val) => {
-    this.handleCloseDrawer();
-    this.handleUserDialogState(val);
-    this.handleUserButton();
-  };
-
   render() {
-    /* AppBar Related */
-    let title = 'AI Playground';
-    if (this.props.hasOwnProperty('title'))
-      title = this.props.title;
-    let appBarDepth = 1;
-    if (this.props.hasOwnProperty('appBarDepth'))
-      appBarDepth = this.props.appBarDepth;
     return (
-
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <div className="wrapper">
-          <AppBar
-            title={
-              <div style={styles.appBar.title}>{title}</div>
-            }
-            onLeftIconButtonTouchTap={this.handleOpenDrawer}
-            zDepth={appBarDepth}
-            iconElementRight={
-              <Breakpoint
-                minWidth={960}
-                widthMethod="pageWidth"
-              >
-                <div style={{marginRight: 8}}>
-
-                  <FlatButton style={styles.appBar.flatButton} label="Problems" href="/problem"/>
-                  <FlatButton style={styles.appBar.flatButton} label="Competitions" href="/competition"/>
-                  <IconButton style={styles.appBar.iconButtonStyle}
-                              iconStyle={styles.appBar.iconButtonIconStyle}
-                              onTouchTap={this.handleUserButton}>
-                    <Person style={styles.appBar.iconButtonIconStyle}/>
-                  </IconButton>
-
+      <div>
+        <AppBar />
+        {this.props.children}
+        <div className="ui inverted vertical footer segment">
+          <div className="ui container">
+            <div className="ui stackable inverted divided equal height stackable grid">
+              <div className="three wide column">
+                <h4 className="ui inverted header">About</h4>
+                <div className="ui inverted link list">
+                  <a href="#" className="item">Sitemap</a>
+                  <a href="#" className="item">Contact Us</a>
+                  <a href="#" className="item">Religious Ceremonies</a>
+                  <a href="#" className="item">Gazebo Plans</a>
                 </div>
-              </Breakpoint>
-            }
-          />
-          <Sign open={this.state.userDialogOpen}
-                selected={this.state.userDialogState}
-                onClose={this.handleUserButtonClose}
-                onSelected={this.handleUserDialogState}
-                key="sign" />
-
-          <Drawer
-            docked={false}
-            open={this.state.open}
-            onRequestChange={(open) => this.setState({open})}
-            style={styles.drawer}
-          >
-            <div style={styles.logo}>AI Playground</div>
-            <Menu>
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="/">Home</MenuItem>
-              <Divider />
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="/problem">Problems</MenuItem>
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="/competition">Competition</MenuItem>
-              <MenuItem onTouchTap={this.handleCloseDrawer} href="/board">Board</MenuItem>
-              <Divider />
-              <MenuItem onTouchTap={() => this.handleUserButtonWithVal(0)}>Sign In</MenuItem>
-              <MenuItem onTouchTap={() => this.handleUserButtonWithVal(1)}>Sign Up</MenuItem>
-            </Menu>
-          </Drawer>
-          <div>
-            {this.props.content}
-          </div>
-          <div className="footer" style={styles.footer}>
-            <p style={styles.footerContent}>
-              AI Playground &copy; 2016 - 2017
-            </p>
+              </div>
+              <div className="three wide column">
+                <h4 className="ui inverted header">Services</h4>
+                <div className="ui inverted link list">
+                  <a href="#" className="item">Banana Pre-Order</a>
+                  <a href="#" className="item">DNA FAQ</a>
+                  <a href="#" className="item">How To Access</a>
+                  <a href="#" className="item">Favorite X-Men</a>
+                </div>
+              </div>
+              <div className="seven wide column">
+                <h4 className="ui inverted header">Footer Header</h4>
+                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }
