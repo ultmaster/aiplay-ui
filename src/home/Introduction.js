@@ -154,7 +154,7 @@ class Introduction extends React.Component {
         once: false,
         onBottomPassed: function () {
           $('.fixed.menu').transition('fade in');
-          console.log("cleared");
+          console.log("fuck");
         },
         onBottomPassedReverse: function () {
           $('.fixed.menu').transition('fade out');
