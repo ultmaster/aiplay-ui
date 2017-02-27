@@ -7,14 +7,12 @@ class Sign extends React.Component {
     super(props);
     this.state = {open: false, successOpen: false, selectedIndex: 0};
     this.close = props.onClose;
-    this.select = props.onSelected;
   }
+
+  select = (id) => this.setState({selectedIndex: id});
 
   componentWillReceiveProps = (nextProps) => {
     this.setState({open: nextProps.open});
-    if (nextProps.selected != null) {
-      this.setState({selectedIndex: nextProps.selected});
-    }
   };
 
   signSubmit = (event) => {
@@ -53,67 +51,53 @@ class Sign extends React.Component {
   };
 
   render() {
-    // const actions = [
-    //   <FlatButton
-    //     label="Cancel"
-    //     onTouchTap={this.handleClose}
-    //   />,
-    //   <FlatButton
-    //     label="Submit"
-    //     secondary={true}
-    //     onTouchTap={this.signSubmit}
-    //   />,
-    // ];
-    //
-    // let title = 'Sign In Now';
-    // let content = [
-    //   <form>
-    //     <TextField errorText="" ref="username" style={inputStyles.textField} hintText="Username"/>
-    //     <br/>
-    //     <TextField errorText="" ref="password" style={inputStyles.textField} hintText="Password" type="password"/>
-    //     <br/>
-    //   </form>,
-    //   <a onClick={() => this.select(1)}
-    //      style={{cursor: 'pointer', color: muiTheme.palette.primary1Color}}>
-    //     Do not have an account?</a>
-    // ];
-    // if (this.state.selectedIndex == 1) {
-    //   title = 'Create an account';
-    //   content = [
-    //     <form>
-    //       <TextField errorText="" ref="email" style={inputStyles.textField} hintText="Email" type="email" key="email"/>
-    //       <br/>
-    //       <TextField errorText="" ref="username" style={inputStyles.textField} hintText="Username" key="username"/>
-    //       <br/>
-    //       <TextField errorText="" ref="password" style={inputStyles.textField} hintText="Password" type="password" key="password"/>
-    //       <br/>
-    //     </form>,
-    //     <a onClick={() => this.select(0)} style={{cursor: 'pointer'}}>Click here if you already have an account.</a>
-    //   ]
-    // }
+
+    let title = "Sign In";
+    let form = (
+      <form>
+        <Input size="large" placeholder='Username' />
+        <br /><br />
+        <Input size="large" type="password" placeholder='Password' />
+      </form>
+    );
+    let switchInfo = "Do you not have an account?";
+    let switchButton = (<Button basic primary onClick={() => this.select(1)}>Sign Up Now</Button>);
+
+    if (this.state.selectedIndex === 1) {
+      title = 'Sign Up';
+      form = (
+        <form>
+          <Input size="large" type="email" placeholder='Email' />
+          <br /><br />
+          <Input size="large" placeholder='Username' />
+          <br /><br />
+          <Input size="large" type="password" placeholder='Password' />
+        </form>
+      );
+      switchInfo = "Already have an account?";
+      switchButton = (<Button basic primary onClick={() => this.select(0)}>Sign In Now</Button>);
+    }
 
     return (
       <Modal open={this.state.open} closeOnDimmerClick={true} onClose={this.close} size="small">
-        <Modal.Header>Sign In</Modal.Header>
+        <Modal.Header>{title}</Modal.Header>
         <Modal.Content image>
           <Modal.Description>
-            <div className="ui stackable divided equal height stackable grid">
-              <div className="eight wide column">
-                <Input size="large" placeholder='Username' />
-                <br /><br />
-                <Input size="large" placeholder='Password' />
-              </div>
-              <div className="eight wide column">
-                <p>Do you not have an account?</p>
-                <Button basic primary>Sign Up Now</Button>
-              </div>
-            </div>
+            <Grid columns='equal' stackable divided={true}>
+              <Grid.Column>
+                {form}
+              </Grid.Column>
+              <Grid.Column>
+                <p>{switchInfo}</p>
+                {switchButton}
+              </Grid.Column>
+            </Grid>
 
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
           <Button color='black' onClick={this.close}>
-            Nope
+            Close
           </Button>
           <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.close} />
         </Modal.Actions>
