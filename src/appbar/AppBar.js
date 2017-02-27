@@ -5,9 +5,8 @@ export default class AppBar extends Component {
 
   constructor(props) {
     super(props);
+    this.state = { activeItem: 'home' };
   }
-
-  state = {};
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });
@@ -18,33 +17,46 @@ export default class AppBar extends Component {
 
     return (
       <Menu className="large top fixed">
-        <Menu.Item>
+        <Menu.Item
+          name="home"
+          active={false}
+          onClick={this.handleItemClick}
+        >
           <img src='http://semantic-ui.com/images/logo.png' />
         </Menu.Item>
 
         <Menu.Item
-          name='features'
-          active={activeItem === 'features'}
+          name='problems'
+          active={activeItem === 'problems'}
           onClick={this.handleItemClick}
         >
-          Features
+          Problems
         </Menu.Item>
 
         <Menu.Item
-          name='testimonials'
-          active={activeItem === 'testimonials'}
+          name='competitions'
+          active={activeItem === 'competitions'}
           onClick={this.handleItemClick}
         >
-          Testimonials
+          Competitions
         </Menu.Item>
 
         <Menu.Item
-          name='sign-in'
-          active={activeItem === 'sign-in'}
+          name='board'
+          active={activeItem === 'board'}
           onClick={this.handleItemClick}
         >
-          Sign-in
+          Board
         </Menu.Item>
+        <Menu.Menu position="right">
+          <Menu.Item
+            name="sign"
+            active={false}
+            onClick={this.handleItemClick}
+          >
+            Sign In / Sign Up
+          </Menu.Item>
+        </Menu.Menu>
       </Menu>
     )
   }

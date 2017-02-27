@@ -4,10 +4,6 @@ import './Introduction.scss';
 
 class Introduction extends React.Component {
 
-  handleAppBarClick = (name) => {
-    console.log(name);
-  };
-
   render() {
     return (
       <div>
