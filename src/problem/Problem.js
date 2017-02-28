@@ -7,9 +7,10 @@ import { Menu, Segment, Container, Header } from 'semantic-ui-react';
 // import muiTheme from '../main/theme';
 // import Main from '../main/Main';
 import ProblemDescription from './ProblemDescription';
+import ProblemSubmitPage from './ProblemSubmitPage';
 import Page from '../components/Page/Page';
 import './Problem.scss';
-// import ProblemSubmitPage from './ProblemSubmitPage';
+
 //
 // // TODO: depth
 // // const zDepth = 1;
@@ -40,7 +41,8 @@ class Problem extends React.Component {
             <Menu.Item name='ranklist' active={activeItem === 'ranklist'} onClick={this.handleItemClick} />
             <Menu.Item name='management' active={activeItem === 'management'} onClick={this.handleItemClick} />
           </Menu>
-          {activeItem == 'description' && <ProblemDescription />}
+          {activeItem == 'description' && <ProblemDescription/>}
+          {activeItem == 'submit' && <ProblemSubmitPage/>}
         </Container>
       </Page>
     )

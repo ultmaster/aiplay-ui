@@ -4,11 +4,11 @@ $example-indicator-font-family: "Consolas", "Lucida Console", "Andale Mono", "Bi
 .problem-description {
   .header, .passage {
     margin-bottom: 1.5em;
-  }
-  .passage-title {
-    font-size: 1.4em;
-    margin-bottom: 0.2em;
-    font-weight: 600;
+    &>.title {
+      font-size: 1.4em;
+      margin-bottom: 0.2em;
+      font-weight: 600;
+    }
   }
   .examples {
     .example {

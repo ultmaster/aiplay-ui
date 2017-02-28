@@ -1,12 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TextField from 'material-ui/TextField';
-import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import ImageEdit from 'material-ui/svg-icons/image/edit';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+
 
 const mockDetail = `
 <pre>
@@ -106,23 +100,26 @@ class Submission extends React.Component {
   }
 
   render() {
+    // return (
+    //   <Card style={{marginBottom: 15}}>
+    //     <CardHeader
+    //       title={"Submission #" + this.state.id}
+    //       subtitle="Submitted at 18:37 Dec. 26, 2016"
+    //       avatar={<ImageEdit/>}
+    //       showExpandableButton={true}
+    //       actAsExpander={true}
+    //     />
+    //     <CardText expandable={true}>
+    //       <div dangerouslySetInnerHTML={{__html: mockDetail}}></div>
+    //     </CardText>
+    //     <CardActions expandable={true}>
+    //       <FlatButton secondary={true} label="View Running Details"/>
+    //     </CardActions>
+    //   </Card>
+    // );
     return (
-      <Card style={{marginBottom: 15}}>
-        <CardHeader
-          title={"Submission #" + this.state.id}
-          subtitle="Submitted at 18:37 Dec. 26, 2016"
-          avatar={<ImageEdit/>}
-          showExpandableButton={true}
-          actAsExpander={true}
-        />
-        <CardText expandable={true}>
-          <div dangerouslySetInnerHTML={{__html: mockDetail}}></div>
-        </CardText>
-        <CardActions expandable={true}>
-          <FlatButton secondary={true} label="View Running Details"/>
-        </CardActions>
-      </Card>
-    );
+      <div>Hello 2</div>
+    )
   }
 }
 

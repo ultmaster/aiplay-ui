@@ -1,12 +1,6 @@
 import React from 'react';
 
 const mockDescription = `
-<div class="header center">
-  <h4 class="title">Timofey and a tree</h4>
-  <div class="property">time limit per test: 2 seconds</div>
-  <div class="property">time limit all tests: 2 seconds</div>
-  <div class="property">memory limit per test: 256 megabytes</div>
-</div>
 <div class="passage">
   <p>Each New Year Timofey and his friends cut down a tree of <span class="tex-span"><i>n</i></span> vertices and bring it home. After that they paint all the <span class="tex-span"><i>n</i></span> its vertices, so that the <span class="tex-span"><i>i</i></span>-th vertex gets color <span class="tex-span"><i>c</i><sub class="lower-index"><i>i</i></sub></span>.</p>
   <p>Now it's time for Timofey birthday, and his mother asked him to remove the tree. Timofey removes the tree in the following way: he takes some vertex in hands, while all the other vertices move down so that the tree becomes rooted at the chosen vertex. After that Timofey brings the tree to a trash can.</p>
@@ -15,18 +9,24 @@ const mockDescription = `
   <p>Your task is to determine if there is a vertex, taking which in hands Timofey wouldn't be annoyed.</p>
 </div>
 <div class="passage">
-  <div class="passage-title">Input</div>
+  <div class="title">Input</div>
   <p>The first line contains single integer <span class="tex-span"><i>n</i></span> (<span class="tex-span">2 ≤ <i>n</i> ≤ 10<sup class="upper-index">5</sup></span>)&nbsp;— the number of vertices in the tree.</p>
   <p>Each of the next <span class="tex-span"><i>n</i> - 1</span> lines contains two integers <span class="tex-span"><i>u</i></span> and <span class="tex-span"><i>v</i></span> (<span class="tex-span">1 ≤ <i>u</i>, <i>v</i> ≤ <i>n</i></span>, <span class="tex-span"><i>u</i> ≠ <i>v</i></span>), denoting there is an edge between vertices <span class="tex-span"><i>u</i></span> and <span class="tex-span"><i>v</i></span>. It is guaranteed that the given graph is a tree.</p>
   <p>The next line contains <span class="tex-span"><i>n</i></span> integers <span class="tex-span"><i>c</i><sub class="lower-index">1</sub>, <i>c</i><sub class="lower-index">2</sub>, ..., <i>c</i><sub class="lower-index"><i>n</i></sub></span> (<span class="tex-span">1 ≤ <i>c</i><sub class="lower-index"><i>i</i></sub> ≤ 10<sup class="upper-index">5</sup></span>), denoting the colors of the vertices.</p>
 </div>
 <div class="passage">
-  <div class="passage-title">Output</div>
+  <div class="title">Output</div>
   <p>Print "<span class="tex-font-style-tt">NO</span>" in a single line, if Timofey can't take the tree in such a way that it doesn't annoy him.</p>
   <p>Otherwise print "<span class="tex-font-style-tt">YES</span>" in the first line. In the second line print the index of the vertex which Timofey should take in hands. If there are multiple answers, print any of them.</p>
 </div>
+<div class="passage">
+  <div class="title">Constrains</div>
+  <div class="property">time limit per test: 2 seconds</div>
+  <div class="property">time limit all tests: 2 seconds</div>
+  <div class="property">memory limit per test: 256 megabytes</div>
+</div>
 <div class="passage examples">
-  <div class="passage-title">Examples</div>
+  <div class="title">Examples</div>
   <div class="example">
     <div class="input">
       <div class="title">Input</div><pre>4<br>1 2<br>2 3<br>3 4<br>1 2 1 1<br></pre></div>
@@ -51,7 +51,7 @@ const mockDescription = `
 class ProblemDescription extends React.Component {
   render() {
     return (
-      <div className="container problem-description">
+      <div className="problem-description">
         <div dangerouslySetInnerHTML={{__html:mockDescription}}></div>
       </div>
     )
