@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Button, Dropdown, Image, Icon, Label, Segment, TextArea, Form } from 'semantic-ui-react';
 
 
 class Submit extends React.Component {
@@ -79,13 +80,23 @@ class Submit extends React.Component {
     //     </CardActions>
     //   </Card>
     // );
+    const langSelections = [
+      { key: 'cpp', value: 'cpp', text: 'GNU G++11 4.8.4' },
+      { key: 'java', value: 'java', text: 'Java 1.7.0_121' },
+      { key: 'python', value: 'python', text: 'Python 3.4.3' }
+    ];
     return (
-      <div>
-        <label htmlFor="file" className="ui icon button">
-          <i className="file icon"></i>
-          Open File</label>
-        <input type="file" id="file" style={{display:"none"}}/>
-      </div>
+      <Segment raised>
+        <Label color='red' ribbon={true}>Submit your code</Label>
+        <br/><br/>
+        <Form>
+          <Dropdown placeholder='Select your language' selection={true} options={langSelections} />
+          <br/><br/>
+          <TextArea placeholder='Enter your code' />
+        </Form>
+        <br/>
+        <Button content="OK, send it" icon="send" labelPosition="right"/>
+      </Segment>
     );
   }
 }

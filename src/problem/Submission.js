@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Button, Dropdown, Image, Icon, Label, Segment, TextArea, Form } from 'semantic-ui-react';
 
 
 const mockDetail = `
@@ -118,8 +119,13 @@ class Submission extends React.Component {
     //   </Card>
     // );
     return (
-      <div>Hello 2</div>
-    )
+      <Segment raised>
+        <Label color="blue" ribbon={true}>{"Submission #" + this.state.id}</Label>
+        <br/><br/>
+        <p>Author: TooDifficult; submitted at 18:37 Dec. 26, 2016</p>
+        <div dangerouslySetInnerHTML={{__html: mockDetail}}></div>
+      </Segment>
+    );
   }
 }
 
