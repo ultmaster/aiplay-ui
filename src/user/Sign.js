@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Header, Image, Modal, Input, Segment, Grid } from 'semantic-ui-react';
+import { Button, Header, Image, Modal, Input, Segment, Message, Grid } from 'semantic-ui-react';
 
 class Sign extends React.Component {
 
@@ -13,6 +13,17 @@ class Sign extends React.Component {
 
   componentWillReceiveProps = (nextProps) => {
     this.setState({open: nextProps.open});
+  };
+
+  handleInputChange = (event) => {
+    const target = event.target;
+    console.log(target);
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   };
 
   signSubmit = (event) => {
@@ -55,9 +66,9 @@ class Sign extends React.Component {
     let title = "Sign In";
     let form = (
       <form>
-        <Input size="large" placeholder='Username' />
+        <Input key="username" size="large" placeholder='Username' onChange={this.handleInputChange} />
         <br /><br />
-        <Input size="large" type="password" placeholder='Password' />
+        <Input key="password" size="large" type="password" placeholder='Password' />
       </form>
     );
     let switchInfo = "Do you not have an account?";
@@ -67,11 +78,13 @@ class Sign extends React.Component {
       title = 'Sign Up';
       form = (
         <form>
-          <Input size="large" type="email" placeholder='Email' />
+          <Input key="email" size="large" type="email" placeholder='Email' />
           <br /><br />
-          <Input size="large" placeholder='Username' />
+          <Input key="username" size="large" placeholder='Username' />
           <br /><br />
-          <Input size="large" type="password" placeholder='Password' />
+          <Input key="password" size="large" type="password" placeholder='Password' />
+          <br /><br />
+          <Input key="rPassword" size="large" type="password" placeholder='Repeat Password' />
         </form>
       );
       switchInfo = "Already have an account?";
@@ -86,6 +99,10 @@ class Sign extends React.Component {
             <Grid columns='equal' stackable divided={true}>
               <Grid.Column>
                 {form}
+                <Message
+                  error
+                  content="Error Message"
+                />
               </Grid.Column>
               <Grid.Column>
                 <p>{switchInfo}</p>
