@@ -1,66 +1,49 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
-import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
-import {Tabs, Tab} from 'material-ui/Tabs';
-import FlatButton from 'material-ui/FlatButton';
-import muiTheme from '../main/theme';
-import Main from '../main/Main';
+import { Menu, Segment, Container, Header } from 'semantic-ui-react';
+// import TextField from 'material-ui/TextField';
+// import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
+// import {Tabs, Tab} from 'material-ui/Tabs';
+// import FlatButton from 'material-ui/FlatButton';
+// import muiTheme from '../main/theme';
+// import Main from '../main/Main';
 import ProblemDescription from './ProblemDescription';
-import ProblemSubmitPage from './ProblemSubmitPage';
-
-// TODO: depth
-// const zDepth = 1;
+import Page from '../components/Page/Page';
+import './Problem.scss';
+// import ProblemSubmitPage from './ProblemSubmitPage';
 //
-// const styles = {
-//   tabs: {
-//     boxShadow: muiTheme.paper.zDepthShadows[zDepth - 1], // No shadow for 0 depth papers
-//     zIndex: muiTheme.appBar.zIndex
-//   }
-// };
+// // TODO: depth
+// // const zDepth = 1;
+// //
+// // const styles = {
+// //   tabs: {
+// //     boxShadow: muiTheme.paper.zDepthShadows[zDepth - 1], // No shadow for 0 depth papers
+// //     zIndex: muiTheme.appBar.zIndex
+// //   }
+// // };
 
 
 class Problem extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {userDialogOpen: false};
-  }
+  state = { activeItem: 'description' };
 
-  handleUserButton = () => this.setState({userDialogOpen: true});
-  handleUserButtonClose = () => this.setState({userDialogOpen: false});
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
-    console.log(this.props.params.id);
-    console.log(muiTheme);
-    const content = (
-        <Tabs>
-          <Tab label="Problem">
-            <ProblemDescription />
-          </Tab>
-          <Tab label="Submit" >
-            <ProblemSubmitPage />
-          </Tab>
-          <Tab label="Board" >
-            <div>
-              <h2>Tab Two</h2>
-              <p>
-                This is another example tab.
-              </p>
-            </div>
-          </Tab>
-          <Tab
-            label="Ranklist"
-          >
-            <div>
-              <h2>Tab Three</h2>
-              <p>
-                This is a third example tab.
-              </p>
-            </div>
-          </Tab>
-        </Tabs>
-    );
-    return <Main title="A + B Problem" appBarDepth={0} content={content} />;
+    const { activeItem } = this.state;
+    return (
+      <Page>
+        <Container>
+          <Header as="h1">Timofey and a tree</Header>
+          <Menu tabular={true}>
+            <Menu.Item name='description' active={activeItem === 'description'} onClick={this.handleItemClick} />
+            <Menu.Item name='submit' active={activeItem === 'submit'} onClick={this.handleItemClick} />
+            <Menu.Item name='ranklist' active={activeItem === 'ranklist'} onClick={this.handleItemClick} />
+            <Menu.Item name='management' active={activeItem === 'management'} onClick={this.handleItemClick} />
+          </Menu>
+          {activeItem == 'description' && <ProblemDescription />}
+        </Container>
+      </Page>
+    )
   }
 }
 

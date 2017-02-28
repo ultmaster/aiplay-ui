@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Segment, Container, Header } from 'semantic-ui-react';
 import './Introduction.scss';
 
 class Introduction extends React.Component {
 
   render() {
     return (
-      <div>
 
-        <div className="pusher">
-          <div className="ui inverted vertical masthead center aligned segment">
+        <div>
+          <Segment inverted vertical textAlign="center" className="masthead">
 
-            <div className="ui text container">
-              <h1 className="ui inverted header">
+            <Container text>
+              <Header as="h1" inverted>
                 AI Playground
-              </h1>
+              </Header>
               <h2>It is more than coding.</h2>
               <Button primary className="huge">Get Started <Icon name="right arrow" /></Button>
-            </div>
+            </Container>
 
-          </div>
+          </Segment>
 
           <div className="ui vertical stripe segment">
             <div className="ui middle aligned stackable grid container">
@@ -75,7 +74,6 @@ class Introduction extends React.Component {
           </div>
 
         </div>
-      </div>
     )
   }
 }

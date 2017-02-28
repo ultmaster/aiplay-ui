@@ -8,6 +8,7 @@ import ProblemFeed from './problem/ProblemFeed';
 import Problem from './problem/Problem';
 import Main from './main/Main';
 
+import './css/main.scss';
 import '../semantic/dist/semantic.css';
 
 // Needed for onTouchTap

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import Sign from '../user/Sign';
+import { hashHistory } from 'react-router';
 
 export default class AppBar extends Component {
 
@@ -18,6 +19,8 @@ export default class AppBar extends Component {
       this.setState({ signItemOpen: true });
     } else {
       this.setState({activeItem: name});
+      const path = (name == 'home' ? '' : name);
+      hashHistory.push(path);
     }
   };
 
@@ -36,16 +39,16 @@ export default class AppBar extends Component {
           </Menu.Item>
 
           <Menu.Item
-            name='problems'
-            active={activeItem === 'problems'}
+            name='problem'
+            active={activeItem === 'problem'}
             onClick={this.handleItemClick}
           >
             Problems
           </Menu.Item>
 
           <Menu.Item
-            name='competitions'
-            active={activeItem === 'competitions'}
+            name='competition'
+            active={activeItem === 'competition'}
             onClick={this.handleItemClick}
           >
             Competitions

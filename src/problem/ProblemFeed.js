@@ -1,5 +1,6 @@
 import React from 'react';
-import { Feed, Icon } from 'semantic-ui-react';
+import { Feed, Icon, Container, Segment, Divider } from 'semantic-ui-react';
+import { Link } from 'react-router';
 
 class ProblemFeed extends React.Component {
 
@@ -9,6 +10,8 @@ class ProblemFeed extends React.Component {
 
   render() {
     const content = (
+      <Segment vertical className="stripe">
+      <Container>
       <Feed>
         <Feed.Event>
           <Feed.Label>
@@ -27,12 +30,12 @@ class ProblemFeed extends React.Component {
             </Feed.Meta>
           </Feed.Content>
         </Feed.Event>
-
+        <Divider />
         <Feed.Event>
           <Feed.Label image='http://semantic-ui.com/images/avatar/small/helen.jpg' />
           <Feed.Content>
             <Feed.Summary>
-              <a>Helen Troy</a> added <a>2 new illustrations</a>
+              <a>Helen Troy</a> added <Link to="problem/1">2 new illustrations</Link>
               <Feed.Date>4 days ago</Feed.Date>
             </Feed.Summary>
             <Feed.Extra images>
@@ -47,7 +50,7 @@ class ProblemFeed extends React.Component {
             </Feed.Meta>
           </Feed.Content>
         </Feed.Event>
-
+        <Divider />
         <Feed.Event>
           <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
           <Feed.Content>
@@ -60,7 +63,7 @@ class ProblemFeed extends React.Component {
             </Feed.Meta>
           </Feed.Content>
         </Feed.Event>
-
+        <Divider />
         <Feed.Event>
           <Feed.Label image='http://semantic-ui.com/images/avatar/small/joe.jpg' />
           <Feed.Content>
@@ -81,7 +84,7 @@ class ProblemFeed extends React.Component {
             </Feed.Meta>
           </Feed.Content>
         </Feed.Event>
-
+        <Divider />
         <Feed.Event>
           <Feed.Label image='http://semantic-ui.com/images/avatar/small/justen.jpg' />
           <Feed.Content>
@@ -102,6 +105,8 @@ class ProblemFeed extends React.Component {
           </Feed.Content>
         </Feed.Event>
       </Feed>
+      </Container>
+      </Segment>
     );
     return content;
   }

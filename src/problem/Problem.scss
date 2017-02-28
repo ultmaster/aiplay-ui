@@ -1,0 +1,41 @@
+$example-indicator-font-family: "Consolas", "Lucida Console", "Andale Mono", "Bitstream Vera Sans Mono",
+                                "Courier New", "Courier", sans-serif;
+
+.problem-description {
+  .header, .passage {
+    margin-bottom: 1.5em;
+  }
+  .passage-title {
+    font-size: 1.4em;
+    margin-bottom: 0.2em;
+    font-weight: 600;
+  }
+  .examples {
+    .example {
+      font-family: $example-indicator-font-family;
+      font-size: 0.95em;
+      margin-bottom: 1em;
+      > div {
+        border: 1px solid #888;
+        &:not(:first-child) {
+          position: relative;
+          top: -1px;
+        }
+      }
+      .title {
+        font-size: 1.1em;
+        padding: 0.25em;
+        border-bottom: 1px solid #888;
+        text-transform: lowercase;
+        font-weight: bold;
+      }
+      pre {
+        line-height: 1.25em;
+        padding: 0.25em;
+        margin: 0;
+        background-color: #f7f7f7;
+        color: #ad1457;
+      }
+    }
+  }
+}
