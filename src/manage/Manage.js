@@ -1,7 +1,8 @@
 import React from 'react';
-import ManagePassage from './ManagePassage';
 import { Header, Message, Form, Input } from 'semantic-ui-react';
 import ManageMeta from './ManageMeta';
+import ManagePassage from './ManagePassage';
+import ManageExample from './ManageExample';
 
 class Manage extends React.Component {
   render() {
@@ -15,6 +16,8 @@ class Manage extends React.Component {
         <ManageMeta/>
         <Header as="h2">Describe the problem</Header>
         <ManagePassage/>
+        <Header as="h2">Add examples</Header>
+        <ManageExample/>
       </div>
     );
   }
