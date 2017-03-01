@@ -25,9 +25,8 @@ class ManageMeta extends React.Component {
           <label>Publicity</label>
           <Dropdown placeholder='Make it public or not' selection={true} options={publicSelections} />
         </Form.Field>
-        <Button positive>
-          Save
-        </Button>
+        <Button positive content="Save" icon="checkmark" labelPosition="left"/>
+
       </Form>
     );
   }
