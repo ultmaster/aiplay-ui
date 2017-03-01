@@ -5,7 +5,7 @@ import { Button, Dropdown, Image, Icon, Label, Segment, TextArea, Form } from 's
 
 const mockDetail = `
 <pre>
-# include <bits/stdc++.h>
+# include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 

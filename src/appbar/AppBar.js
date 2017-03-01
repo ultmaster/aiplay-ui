@@ -18,7 +18,7 @@ export default class AppBar extends Component {
     if (name === 'sign') {
       this.setState({ signItemOpen: true });
     } else {
-      this.setState({activeItem: name});
+      //this.setState({activeItem: name});
       const path = (name == 'home' ? '' : name);
       hashHistory.push(path);
     }

@@ -95,7 +95,7 @@ class Submit extends React.Component {
           <TextArea placeholder='Enter your code' />
         </Form>
         <br/>
-        <Button content="OK, send it" icon="send" labelPosition="right"/>
+        <Button content="Okay, send it" icon="send" labelPosition="right"/>
       </Segment>
     );
   }

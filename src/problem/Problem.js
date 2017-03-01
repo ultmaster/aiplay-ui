@@ -8,6 +8,8 @@ import { Menu, Segment, Container, Header } from 'semantic-ui-react';
 // import Main from '../main/Main';
 import ProblemDescription from './ProblemDescription';
 import ProblemSubmitPage from './ProblemSubmitPage';
+import ProblemRanklist from './ProblemRanklist';
+import Manage from '../manage/Manage';
 import Page from '../components/Page/Page';
 import './Problem.scss';
 
@@ -29,20 +31,23 @@ class Problem extends React.Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
+  // TODO: mobile solution
   render() {
     const { activeItem } = this.state;
     return (
       <Page>
         <Container>
           <Header as="h1">Timofey and a tree</Header>
-          <Menu tabular={true}>
+          <Menu stackable={true} tabular={true}>
             <Menu.Item name='description' active={activeItem === 'description'} onClick={this.handleItemClick} />
             <Menu.Item name='submit' active={activeItem === 'submit'} onClick={this.handleItemClick} />
             <Menu.Item name='ranklist' active={activeItem === 'ranklist'} onClick={this.handleItemClick} />
-            <Menu.Item name='management' active={activeItem === 'management'} onClick={this.handleItemClick} />
+            <Menu.Item name='manage' active={activeItem === 'manage'} onClick={this.handleItemClick} />
           </Menu>
           {activeItem == 'description' && <ProblemDescription/>}
           {activeItem == 'submit' && <ProblemSubmitPage/>}
+          {activeItem == 'ranklist' && <ProblemRanklist/>}
+          {activeItem == 'manage' && <Manage/>}
         </Container>
       </Page>
     )
