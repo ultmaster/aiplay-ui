@@ -1,8 +1,9 @@
 import React from 'react';
-import { Header, Message, Form, Input } from 'semantic-ui-react';
+import { Header, Message, Form, Input, Divider } from 'semantic-ui-react';
 import ManageMeta from './ManageMeta';
 import ManagePassage from './ManagePassage';
 import ManageExample from './ManageExample';
+import ManageData from './ManageData';
 
 class Manage extends React.Component {
   render() {
@@ -18,6 +19,10 @@ class Manage extends React.Component {
         <ManagePassage/>
         <Header as="h2">Add examples</Header>
         <ManageExample/>
+        <Header as="h2">Test data</Header>
+        <ManageData/>
+        <Header as="h2">Pretest data</Header>
+        <ManageData/>
       </div>
     );
   }
