@@ -6,7 +6,7 @@ class Upload extends React.Component {
   }
 
   render() {
-    return <div>File Upload Box here</div>;
+    return <div>TODO: File Upload Box here</div>;
   }
 }
 

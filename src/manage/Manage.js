@@ -22,7 +22,7 @@ class Manage extends React.Component {
         <Header as="h2">Test data</Header>
         <ManageData/>
         <Header as="h2">Pretest data</Header>
-        <ManageData/>
+        <ManageData pretest={true} />
       </div>
     );
   }
