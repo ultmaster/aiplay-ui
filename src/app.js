@@ -1,27 +1,27 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { Router, Route, Link, hashHistory, IndexRoute } from 'react-router';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import Introduction from './home/Introduction';
-import NotFound from './error/404';
-import ProblemFeed from './problem/ProblemFeed';
-import Problem from './problem/Problem';
-import Main from './main/Main';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import Main from './components/main';
+import Introduction from './components/home/Introduction';
+import ProblemFeed from './components/problem/ProblemFeed';
+import Problem from './components/problem/Problem';
+import Reducer from './reducers';
 
-import './css/main.scss';
+import './components/css/main.scss';
 import '../semantic/dist/semantic.css';
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
+const store = createStore(Reducer);
 
-render((
-  <Router history={hashHistory}>
-    <Route path="/" component={Main} >
-      <IndexRoute component={Introduction} />
-      <Route path="problem" component={ProblemFeed} />
-      <Route path="problem/:id" component={Problem} />
-      <Route path="*" component={NotFound} />
-    </Route>
-  </Router>
+ReactDOM.render((
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path="/" component={Main} >
+        <IndexRoute component={Introduction} />
+        <Route path="problem" component={ProblemFeed} />
+        <Route path="problem/:id" component={Problem} />
+      </Route>
+    </Router>
+  </Provider>
 ), document.getElementById('app'));

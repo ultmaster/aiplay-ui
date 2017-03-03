@@ -1,16 +1,10 @@
 import React from 'react';
 import { Menu, Segment, Container, Header } from 'semantic-ui-react';
-// import TextField from 'material-ui/TextField';
-// import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
-// import {Tabs, Tab} from 'material-ui/Tabs';
-// import FlatButton from 'material-ui/FlatButton';
-// import muiTheme from '../main/theme';
-// import Main from '../main/Main';
 import ProblemDescription from './ProblemDescription';
 import ProblemSubmitPage from './ProblemSubmitPage';
 import ProblemRanklist from './ProblemRanklist';
 import Manage from '../manage/Manage';
-import Page from '../components/Page/Page';
+import Page from '../page';
 import './Problem.scss';
 
 //

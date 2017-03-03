@@ -1,7 +1,7 @@
 import React from 'react';
 import ManagePassage from './ManagePassage';
 import { Form, Input, Dropdown, Button } from 'semantic-ui-react';
-import AddUser from '../components/AddUser';
+import AddUser from '../adduser';
 
 class ManageMeta extends React.Component {
   render() {

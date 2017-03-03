@@ -1,5 +1,5 @@
 import React from 'react';
-import Upload from '../components/Upload';
+import Upload from '../Upload';
 import { Table, Dropdown, Input, Button, Checkbox, Form } from 'semantic-ui-react';
 
 class ManageData extends React.Component {
