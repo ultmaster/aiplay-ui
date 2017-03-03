@@ -29,9 +29,16 @@ module.exports = function makeWebpackConfig() {
    * Should be an empty object if it's generating a test build
    * Karma will set this when it's a test build
    */
-  config.entry = isTest ? void 0 : {
-      app: './src/app.js'
-    };
+  if (isProd || isTest) {
+    config.entry = isTest ? void 0 : {
+        app: './src/app.js'
+      };
+  } else {
+    config.entry = {
+      app: './src/app.js',
+      mock: './mock/index.js'
+    }
+  }
 
   config.output = isTest ? {} : {
       // Absolute output directory
