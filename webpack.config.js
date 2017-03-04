@@ -35,8 +35,8 @@ module.exports = function makeWebpackConfig() {
       };
   } else {
     config.entry = {
-      app: './src/app.js',
-      mock: './mock/index.js'
+      mock: './mock/index.js',
+      app: './src/app.js'
     }
   }
 
@@ -182,7 +182,13 @@ module.exports = function makeWebpackConfig() {
     config.plugins.push(
       new HtmlWebpackPlugin({
         template: './public/index.html',
-        inject: 'body'
+        inject: 'body',
+        chunksSortMode: function orderEntryLast(a, b) {
+          console.log(a.names[0]);
+          console.log(b.names[0]);
+          var order = ["mock", "app"];
+          return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
+        }
       }),
 
       // Reference: https://github.com/webpack/extract-text-webpack-plugin
