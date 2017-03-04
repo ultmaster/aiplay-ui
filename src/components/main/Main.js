@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import AppBar from '../appbar/AppBar';
-import './Main.scss';
 
 class Main extends Component {
 

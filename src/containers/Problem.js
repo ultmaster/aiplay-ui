@@ -1,11 +1,10 @@
 import React from 'react';
 import { Menu, Segment, Container, Header } from 'semantic-ui-react';
-import ProblemDescription from './ProblemDescription';
-import ProblemSubmitPage from './ProblemSubmitPage';
-import ProblemRanklist from './ProblemRanklist';
-import Manage from '../manage/Manage';
-import Page from '../page';
-import './Problem.scss';
+import ProblemDescription from '../components/problem/ProblemDescription';
+import ProblemSubmitPage from '../components/problem/ProblemSubmitPage';
+import ProblemRanklist from '../components/problem/ProblemRanklist';
+import Manage from '../components/manage/Manage';
+import Page from '../components/page';
 
 //
 // // TODO: depth
@@ -27,6 +26,7 @@ class Problem extends React.Component {
 
   // TODO: mobile solution
   render() {
+    const { problem } = this.props;
     const { activeItem } = this.state;
     return (
       <Page>
@@ -36,9 +36,10 @@ class Problem extends React.Component {
             <Menu.Item name='description' active={activeItem === 'description'} onClick={this.handleItemClick} />
             <Menu.Item name='submit' active={activeItem === 'submit'} onClick={this.handleItemClick} />
             <Menu.Item name='ranklist' active={activeItem === 'ranklist'} onClick={this.handleItemClick} />
+            <Menu.Item name="board" active={activeItem === 'board'} onClick={this.handleItemClick} />
             <Menu.Item name='manage' active={activeItem === 'manage'} onClick={this.handleItemClick} />
           </Menu>
-          {activeItem == 'description' && <ProblemDescription/>}
+          {activeItem == 'description' && <ProblemDescription text={problem.description}/>}
           {activeItem == 'submit' && <ProblemSubmitPage/>}
           {activeItem == 'ranklist' && <ProblemRanklist/>}
           {activeItem == 'manage' && <Manage/>}

@@ -6,10 +6,11 @@ import { Provider } from 'react-redux';
 import Main from './components/main';
 import Introduction from './components/home/Introduction';
 import ProblemFeed from './components/problem/ProblemFeed';
-import Problem from './components/problem/Problem';
+import Problem from './containers/Problem';
+import ProblemContainer from './containers/ProblemContainer';
 import Reducer from './reducers';
 
-import './components/css/main.scss';
+import './styles/main.scss';
 import '../semantic/dist/semantic.css';
 
 const store = createStore(Reducer);
@@ -20,7 +21,7 @@ ReactDOM.render((
       <Route path="/" component={Main} >
         <IndexRoute component={Introduction} />
         <Route path="problem" component={ProblemFeed} />
-        <Route path="problem/:id" component={Problem} />
+        <Route path="problem/:id" component={ProblemContainer} />
       </Route>
     </Router>
   </Provider>
