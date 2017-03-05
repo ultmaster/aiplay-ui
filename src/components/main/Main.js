@@ -7,6 +7,12 @@ const style = {
   layoutStyle: {
     backgroundColor: "#fff",
   },
+  headerStyle: {
+    height: "auto"
+  },
+  contentStyle: {
+    padding: 50
+  },
   footerStyle: {
     textAlign: "center"
   }
@@ -18,10 +24,10 @@ class Main extends Component {
   render() {
     return (
       <Layout className="layout" style={style.layoutStyle}>
-        <Header className="header">
+        <Header className="header" style={style.headerStyle}>
           <AppBar/>
         </Header>
-        <Content>
+        <Content style={style.contentStyle}>
           {this.props.children}
         </Content>
         <Footer style={style.footerStyle}>

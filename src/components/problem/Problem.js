@@ -5,7 +5,6 @@ import ProblemDescription from './ProblemDescription';
 import ProblemSubmitPage from './ProblemSubmitPage';
 import ProblemRanklist from './ProblemRanklist';
 import Manage from '../manage/Manage';
-import Page from '../page';
 
 
 class Problem extends React.Component {
@@ -26,7 +25,7 @@ class Problem extends React.Component {
   render() {
     const { title, description } = this.state;
     return (
-      <Page>
+      <div>
         <h1>{title}</h1>
         <Tabs defaultActiveKey="description">
           <Tabs.TabPane tab="Description" key="description">
@@ -43,7 +42,7 @@ class Problem extends React.Component {
           </Tabs.TabPane>
           <Tabs.TabPane tab="Manage" key="manage">Content of Tab Pane 3</Tabs.TabPane>
         </Tabs>
-      </Page>
+      </div>
     )
   }
 }

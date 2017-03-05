@@ -7,8 +7,7 @@ import ProblemFeed from './components/problem/ProblemFeed';
 import Problem from './components/problem/Problem';
 import Sign from './components/user/Sign';
 
-import "./antd/antd.less";
-import './styles/main.scss';
+import './styles/main.less';
 
 ReactDOM.render((
   <Router history={hashHistory}>

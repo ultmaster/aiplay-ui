@@ -1,0 +1,61 @@
+// inspired by Semantic UI
+
+@import "variables.less";
+
+.segment {
+  position: relative;
+  background: @component-background;
+  box-shadow: @shadow;
+  margin: 1rem;
+  padding: @padding;
+  border-radius: @border-radius-base;
+  border-color: @border-color-base;
+  border-width: @border-width-base;
+  border-style: @border-style-base;
+  .label {
+    &.cyan {
+      border-color: @cyan-10 !important;
+      background-color: @cyan-8 !important;
+    }
+    color: #fff !important;
+    left: calc(-1rem - 1.2em);
+    padding: .5833em 1.2em .5833em calc(1rem + 1.2em);
+    min-width: max-content;
+    border-radius: 0 .28571429rem .28571429rem 0;
+    position: relative;
+    margin: 0 -1.2em 0 0;
+    display: inline-block;
+    &:after {
+      position: absolute;
+      content: '';
+      top: 100%;
+      left: 0;
+      background-color: transparent!important;
+      border-style: solid;
+      border-width: 0 1.2em 1.2em 0;
+      border-color: transparent;
+      border-right-color: inherit;
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+/* Label */
+//.ui[class*="bottom attached"].segment > [class*="top attached"].label {
+//  border-top-left-radius: 0em;
+//  border-top-right-radius: 0em;
+//}
+//.ui[class*="top attached"].segment > [class*="bottom attached"].label {
+//  border-bottom-left-radius: 0em;
+//  border-bottom-right-radius: 0em;
+//}
+//.ui.attached.segment:not(.top):not(.bottom) > [class*="top attached"].label {
+//  border-top-left-radius: 0em;
+//  border-top-right-radius: 0em;
+//}
+//.ui.attached.segment:not(.top):not(.bottom) > [class*="bottom attached"].label {
+//  border-bottom-left-radius: 0em;
+//  border-bottom-right-radius: 0em;
+//}
+//
