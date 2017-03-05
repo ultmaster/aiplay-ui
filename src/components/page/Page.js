@@ -1,8 +1,13 @@
 import React, { PropTypes } from 'react'
 
+const style = {
+  padding: 50
+};
+
+
 function Page(props) {
   const { children } = props;
-  return <div className="page">{children}</div>
+  return <div className="page" style={style}>{children}</div>
 }
 
 Page.propTypes = {

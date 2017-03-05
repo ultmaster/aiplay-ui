@@ -3,13 +3,6 @@ import ReactDOM from 'react-dom';
 import { Button, Dropdown, Image, Icon, Label, Segment, TextArea, Form } from 'semantic-ui-react';
 
 
-const mockDetail = `
-<pre>
-
-</pre>
-`;
-
-
 class Submission extends React.Component {
 
   constructor(props) {

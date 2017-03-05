@@ -1,127 +1,32 @@
 import React from 'react';
-import { Button, Header, Image, Modal, Input, Segment, Message, Grid } from 'semantic-ui-react';
+import { Tabs } from 'antd';
+import Page from '../page';
+import Login from './Login';
+
+const style = {
+  centerTab: {
+    maxWidth: 300,
+    margin: "0 auto",
+  },
+};
 
 class Sign extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {open: false, successOpen: false, selectedIndex: 0};
-    this.close = props.onClose;
-  }
-
-  select = (id) => this.setState({selectedIndex: id});
-
-  componentWillReceiveProps = (nextProps) => {
-    this.setState({open: nextProps.open});
-  };
-
-  handleInputChange = (event) => {
-    const target = event.target;
-    console.log(target);
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  };
-
-  signSubmit = (event) => {
-    let keys = [], source = '';
-    if (this.state.selectedIndex == 0) {
-      keys = ['username', 'password'];
-      source = Settings.source + '/login/';
-    } else {
-      keys = ['email', 'username', 'password'];
-      source = Settings.source + '/register/';
-    }
-    let data = {};
-    for (const key of keys) {
-      data[key] = this.refs[key].getValue();
-    }
-    console.log(JSON.stringify(data));
-    // SEND REQUEST
-    // $.ajax({
-    //   type: 'POST',
-    //   url: source,
-    //   data: data,
-    //   error: function(data) {
-    //     for (const key in data.responseJSON) {
-    //       if (data.responseJSON.hasOwnProperty(key) && this.refs.hasOwnProperty(key)) {
-    //         this.refs[key].setState({errorText: data.responseJSON[key]});
-    //       }
-    //     }
-    //   }.bind(this),
-    //   success: function(data) {
-    //     console.log(data.responseJSON);
-    //     this.handleClose();
-    //     this.setState({successOpen: true});
-    //   }.bind(this)
-    // });
-
-  };
-
   render() {
-
-    let title = "Sign In";
-    let form = (
-      <form>
-        <Input key="username" size="large" placeholder='Username' onChange={this.handleInputChange} />
-        <br /><br />
-        <Input key="password" size="large" type="password" placeholder='Password' />
-      </form>
-    );
-    let switchInfo = "Do you not have an account?";
-    let switchButton = (<Button basic primary onClick={() => this.select(1)}>Sign Up Now</Button>);
-
-    if (this.state.selectedIndex === 1) {
-      title = 'Sign Up';
-      form = (
-        <form>
-          <Input key="email" size="large" type="email" placeholder='Email' />
-          <br /><br />
-          <Input key="username" size="large" placeholder='Username' />
-          <br /><br />
-          <Input key="password" size="large" type="password" placeholder='Password' />
-          <br /><br />
-          <Input key="rPassword" size="large" type="password" placeholder='Repeat Password' />
-        </form>
-      );
-      switchInfo = "Already have an account?";
-      switchButton = (<Button basic primary onClick={() => this.select(0)}>Sign In Now</Button>);
-    }
-
     return (
-      <Modal open={this.state.open} closeOnDimmerClick={true} onClose={this.close} size="small">
-        <Modal.Header>{title}</Modal.Header>
-        <Modal.Content image>
-          <Modal.Description>
-            <Grid columns='equal' stackable divided={true}>
-              <Grid.Column>
-                {form}
-                <Message
-                  error
-                  content="Error Message"
-                />
-              </Grid.Column>
-              <Grid.Column>
-                <p>{switchInfo}</p>
-                {switchButton}
-              </Grid.Column>
-            </Grid>
+      <Page>
+        <Tabs defaultActiveKey="login" style={style.centerTab}>
+          <Tabs.TabPane tab="Sign In" key="login">
+            <Login/>
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Sign Up" key="register">
 
-          </Modal.Description>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button color='black' onClick={this.close}>
-            Close
-          </Button>
-          <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.close} />
-        </Modal.Actions>
-      </Modal>
+          </Tabs.TabPane>
+        </Tabs>
+      </Page>
     );
   }
-}
 
+}
 
 export default Sign;
