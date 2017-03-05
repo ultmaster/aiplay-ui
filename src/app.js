@@ -12,8 +12,10 @@ import './styles/main.scss';
 
 ReactDOM.render((
   <Router history={hashHistory}>
+    <Route path="/">
+      <IndexRoute component={Introduction}/>
+    </Route>
     <Route path="/" component={Main} >
-      <IndexRoute component={Introduction} />
       <Route path="sign" component={Sign} />
       <Route path="problem" component={ProblemFeed} />
       <Route path="problem/:id" component={Problem} />

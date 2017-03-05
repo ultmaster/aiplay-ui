@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} >
         <Form.Item>
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
             <Input addonBefore={<Icon type="user" />} placeholder="Username" />
@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
             <Checkbox>Remember me</Checkbox>
           )}
           <Button type="primary" htmlType="submit" style={style.buttonStyle}>
-            Log in
+            Sign in
           </Button>
           <a className="login-form-forgot">Forgot your password?</a><br/>
         </Form.Item>

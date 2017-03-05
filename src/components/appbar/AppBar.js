@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd';
-import Sign from '../user/Sign';
 import { hashHistory } from 'react-router';
 
 const style = {
@@ -11,15 +10,6 @@ const style = {
 
 export default class AppBar extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeItem: 'home',
-      signItemOpen: false,
-      signItemSelected: 0
-    };
-  }
-
   handleItemClick = ({ key }) => {
     console.log(key);
     const path = (key == 'home' ? '' : key);
@@ -27,7 +17,7 @@ export default class AppBar extends Component {
   };
 
   render() {
-    const { activeItem } = this.state;
+    console.log(this.props);
 
     return (
       <Menu

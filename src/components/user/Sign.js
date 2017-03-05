@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import Page from '../page';
 import Login from './Login';
+import Register from './Register';
 
 const style = {
   centerTab: {
@@ -20,7 +21,7 @@ class Sign extends React.Component {
             <Login/>
           </Tabs.TabPane>
           <Tabs.TabPane tab="Sign Up" key="register">
-
+            <Register/>
           </Tabs.TabPane>
         </Tabs>
       </Page>
