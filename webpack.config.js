@@ -114,6 +114,9 @@ module.exports = function makeWebpackConfig() {
       test: /\.scss$/,
       loader: ['style-loader', 'css-loader', 'sass-loader']
     }, {
+      test: /\.less$/,
+      loader: ['style-loader', 'css-loader', 'less-loader']
+    }, {
         // ASSET LOADER
         // Reference: https://github.com/webpack/file-loader
         // Copy png, jpg, jpeg, gif, svg, woff, woff2, ttf, eot files to output

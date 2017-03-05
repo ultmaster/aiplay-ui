@@ -1,6 +1,6 @@
 import React from 'react';
-import Submit from './Submit';
-import Submission from './Submission';
+import Submit from '../submission/Submit';
+import Submission from '../submission/Submission';
 
 class ProblemSubmitPage extends React.Component {
 

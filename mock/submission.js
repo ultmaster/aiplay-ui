@@ -1,11 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button, Dropdown, Image, Icon, Label, Segment, TextArea, Form } from 'semantic-ui-react';
-
-
-const mockDetail = `
-<pre>
-# include &lt;bits/stdc++.h&gt;
+const code1 = ```
+# include <bits/stdc++.h>;
 
 using namespace std;
 
@@ -89,44 +83,13 @@ int main(){
     cout << c / a + b / a;
     return 0;
 }
-</pre>
-`;
+```;
 
-
-class Submission extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {id: '24753177'}
+export default [
+  {
+    id: 10000,
+    code: code1,
+    create_time: "2017-02-21T07:42:10.341215Z",
+    last_update_time: "2017-02-21T07:42:10.341258Z",
   }
-
-  render() {
-    // return (
-    //   <Card style={{marginBottom: 15}}>
-    //     <CardHeader
-    //       title={"Submission #" + this.state.id}
-    //       subtitle="Submitted at 18:37 Dec. 26, 2016"
-    //       avatar={<ImageEdit/>}
-    //       showExpandableButton={true}
-    //       actAsExpander={true}
-    //     />
-    //     <CardText expandable={true}>
-    //       <div dangerouslySetInnerHTML={{__html: mockDetail}}></div>
-    //     </CardText>
-    //     <CardActions expandable={true}>
-    //       <FlatButton secondary={true} label="View Running Details"/>
-    //     </CardActions>
-    //   </Card>
-    // );
-    return (
-      <Segment raised>
-        <Label color="blue" ribbon={true}>{"Submission #" + this.state.id}</Label>
-        <br/><br/>
-        <p>Author: TooDifficult; submitted at 18:37 Dec. 26, 2016</p>
-        <div dangerouslySetInnerHTML={{__html: mockDetail}}></div>
-      </Segment>
-    );
-  }
-}
-
-export default Submission;
+];

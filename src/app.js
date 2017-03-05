@@ -6,9 +6,8 @@ import Introduction from './components/home/Introduction';
 import ProblemFeed from './components/problem/ProblemFeed';
 import Problem from './components/problem/Problem';
 
+import "./antd/antd.less";
 import './styles/main.scss';
-import '../semantic/dist/semantic.css';
-
 
 ReactDOM.render((
   <Router history={hashHistory}>

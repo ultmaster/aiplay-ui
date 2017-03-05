@@ -1,16 +1,11 @@
 import React from 'react';
 import { Menu, Segment, Container, Header } from 'semantic-ui-react';
-import fetch from 'isomorphic-fetch';
 import request from 'superagent';
-import ProblemDescription from './ProblemDescription';
-import ProblemSubmitPage from './ProblemSubmitPage';
-import ProblemRanklist from './ProblemRanklist';
 import Manage from '../manage/Manage';
 import Page from '../page';
-import jQuery from 'jquery';
 
 
-class Problem extends React.Component {
+class SubmissionDetail extends React.Component {
 
   state = { activeItem: 'description' };
 
@@ -18,7 +13,7 @@ class Problem extends React.Component {
 
   componentWillMount = () => {
     const problem_id = this.props.params.id;
-    request.get('api/problem/detail/' + problem_id)
+    request.get('api/submission/' + problem_id)
       .end((err, res) => {
         if (res.ok) {
           this.setState(JSON.parse(res.text));
