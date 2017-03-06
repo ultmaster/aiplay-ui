@@ -3,27 +3,58 @@
 @import "variables.less";
 
 .segment {
+  @segment-padding: 1rem;
   position: relative;
-  background: @component-background;
-  box-shadow: @shadow;
   margin: 1rem;
-  padding: @padding;
+  padding: @segment-padding;
   border-radius: @border-radius-base;
   border-color: @border-color-base;
   border-width: @border-width-base;
   border-style: @border-style-base;
+  &.raised {
+    box-shadow: @shadow;
+  }
   .label {
     &.cyan {
-      border-color: @cyan-10 !important;
-      background-color: @cyan-8 !important;
+      border-color: @cyan-9 !important;
+      background-color: @cyan-7 !important;
     }
+    &.blue {
+      border-color: @blue-9 !important;
+      background-color: @blue-7 !important;
+    }
+    &.green {
+      border-color: @green-9 !important;
+      background-color: @green-7 !important;
+    }
+    &.purple {
+      border-color: @purple-9 !important;
+      background-color: @purple-7 !important;
+    }
+    &.pink {
+      border-color: @pink-9 !important;
+      background-color: @pink-7 !important;
+    }
+    &.red {
+      border-color: @red-9 !important;
+      background-color: @red-7 !important;
+    }
+    &.orange {
+      border-color: @orange-9 !important;
+      background-color: @orange-7 !important;
+    }
+    &.yellow {
+      border-color: @yellow-9 !important;
+      background-color: @yellow-7 !important;
+    }
+    line-height: 1;
     color: #fff !important;
-    left: calc(-1rem - 1.2em);
-    padding: .5833em 1.2em .5833em calc(1rem + 1.2em);
+    left: calc(-@segment-padding - 1.2em);
+    padding: .5833em 1.2em .5833em calc(@segment-padding + 1.2em);
     min-width: max-content;
     border-radius: 0 .28571429rem .28571429rem 0;
     position: relative;
-    margin: 0 -1.2em 0 0;
+    margin: 0 -1.2em 0.5em 0;
     display: inline-block;
     &:after {
       position: absolute;

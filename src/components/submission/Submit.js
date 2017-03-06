@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Select, Input } from 'antd';
+import { Form, Select, Input, Button } from 'antd';
 
 
 class Submit extends React.Component {
@@ -17,10 +17,10 @@ class Submit extends React.Component {
 
     const { getFieldDecorator } = this.props.form;
 
-    const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 14 },
-    };
+    // const formItemLayout = {
+    //   labelCol: { span: 6 },
+    //   wrapperCol: { span: 14 },
+    // };
 
     const langSelections = [
       { value: 'cpp', text: 'GNU G++11 4.8.4' },
@@ -30,9 +30,8 @@ class Submit extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Item
-          {...formItemLayout}
           label="Language"
-          hasFeedback
+          colon={false}
         >
           {getFieldDecorator('language', {
             rules: [],
@@ -45,12 +44,17 @@ class Submit extends React.Component {
           )}
         </Form.Item>
         <Form.Item
-          {...formItemLayout}
           label="Code"
+          colon={false}
         >
           {getFieldDecorator('code', {})(
-            <Input type="textarea" rows={4}/>
+            <Input type="textarea" rows={6}/>
           )}
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Okay, send it
+          </Button>
         </Form.Item>
       </Form>
     );
